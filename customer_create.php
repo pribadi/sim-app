@@ -22,6 +22,10 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -45,7 +49,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="customer_action.php" method="POST">
+                                    <form role="form" action="customer_add.php" method="POST">
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" name="name" class="form-control">

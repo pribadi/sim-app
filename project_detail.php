@@ -24,6 +24,44 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $id = $_GET['id'];
+
+    // query detail project
+    $query = mysql_query("SELECT p.*, c.customer_name
+                        FROM project p
+                        LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        WHERE p.id_project = $id");
+    $data = mysql_fetch_array($query);
+
+    $position_query = mysql_query("SELECT * FROM position");
+
+
+
+
+    $datetime = date_create(date('Y-m-d h:i:s'));
+
+    $start = date_create($data['start']);
+    $end = date_create($data['end']);
+
+    $daydiff = date_diff($start, $end);
+    $totalday = $daydiff->format('%a')+1;
+
+    $progresdiff = date_diff($start, $datetime);
+    $totalprogres = $progresdiff->format('%a')+1;
+
+    $restdiff = date_diff($datetime, $end);
+    $totalrest = $restdiff->format('%a')+1;
+    // echo $totalday;
+    // echo $totalprogres;
+    // echo $totalrest;
+    // exit();
+    $line = ($totalprogres/$totalday)*100;
+
+?>
+
 <body>
 
     <div id="wrapper">
@@ -35,7 +73,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project / Aplikasi Perpustakaan</h1>
+                    <h1 class="page-header">Project / <?php echo $data['name']; ?></h1>
                 </div>
             </div>
 
@@ -56,7 +94,7 @@
                                     </p>
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
+                                            <span class="pull-right text-muted">40% Complete (success)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -66,11 +104,11 @@
                                 <div>
                                     <p>
                                         <strong>Deadline</strong>
-                                        <span class="pull-right text-muted">35 Days Again</span>
+                                        <span class="pull-right text-muted"><?php echo $totalrest; ?> Days Again</span>
                                     </p>
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">40% Complete (success)</span>
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $line . "%"; ?>">
+                                            <span class="pull-right text-muted"><?php echo $totalprogres;?> Days </span>
                                         </div>
                                     </div>
                                 </div>
@@ -98,10 +136,10 @@
                                             <label>Project Name</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p>: Aplikasi Perpustakaan</p>
+                                            <p>: <?php echo $data['name']; ?></p>
                                         </div>
                                         <div class="col-lg-2">
-                                            <a href="project_update.php" style="float: right;"><button class="btn btn-primary">Update</button></a>
+                                            <a href="project_edit.php?id=<?php echo $data['id_project']; ?>" style="float: right;"><button class="btn btn-primary">Update</button></a>
                                         </div>
                                     </div>
 
@@ -110,7 +148,7 @@
                                             <label>Customer</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: PT. Sagara Xinix Solusitama</p>
+                                            <p>: <?php echo $data['customer_name']; ?></p>
                                         </div>
                                     </div>
 
@@ -119,7 +157,7 @@
                                             <label>Start Project</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: 1 - January - 2014</p>
+                                            <p>: <?php echo date('d / F / Y',strtotime($data['start'])); ?></p>
                                         </div>
                                     </div>
 
@@ -128,7 +166,16 @@
                                             <label>End Project</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: 20 - May - 2014</p>
+                                            <p>: <?php echo date('d / F / Y',strtotime($data['end'])); ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Description</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['description']; ?></p>
                                         </div>
                                     </div>
 
@@ -161,22 +208,9 @@
                                             <tr>
                                                 <td>Wahyu Pribadi</td>
                                                 <td>Project Manager</td>
-                                                <td>Delete</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adoel Razman</td>
-                                                <td>Programmer</td>
-                                                <td>Delete</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wahyu Taufik</td>
-                                                <td>Programmer</td>
-                                                <td>Delete</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sentot Bugraha</td>
-                                                <td>Programmer</td>
-                                                <td>Delete</td>
+                                                <td>
+                                                    <a href="deuser_edit.php?id=<?php echo $data['id']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -188,7 +222,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Name</label>
-                                                            <select name="religion" class="form-control">
+                                                            <select name="name" class="form-control">
                                                                 <option>...</option>
                                                                 <option value="">Option</option>
                                                                 <option value="">Option</option>
@@ -199,11 +233,10 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Position</label>
-                                                            <select name="religion" class="form-control">
-                                                                <option>...</option>
-                                                                <option value="">Option</option>
-                                                                <option value="">Option</option>
-                                                                <option value="">Option</option>
+                                                            <select name="id_position" class="form-control">
+                                                                <?php while($position = mysql_fetch_array($position_query)): ?>
+                                                                    <option value="<?php echo $position['id_position'] ?>"><?php echo $position['name'] ?></option>
+                                                                <?php endwhile; ?>
                                                             </select>
                                                         </div>
                                                     </div>

@@ -22,6 +22,12 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $position_query = mysql_query("SELECT * FROM position");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -47,7 +53,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="user_action.php" method="POST">
+                                    <form role="form" action="user_add.php" method="POST">
                                         <div class="form-group">
                                             <label>Employee Number</label>
                                             <input type="text" name="employee" class="form-control">
@@ -109,7 +115,7 @@
                                             <label>Position</label>
                                             <select name="position" class="form-control">
                                                 <option>...</option>
-                                                <?php while($pos = mysql_fetch_array($position)): ?>
+                                                <?php while($pos = mysql_fetch_array($position_query)): ?>
                                                     <option value="<?php echo $pos['name'] ?>"><?php echo $pos['name'] ?></option>
                                                 <?php endwhile; ?>
                                             </select>

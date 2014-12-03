@@ -25,6 +25,13 @@
 
 </head>
 
+<?php
+    include("connect.php");
+
+    mysql_select_db("sim");
+    $query = mysql_query("SELECT * FROM position");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -58,102 +65,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>
-                                                <a href="position_update.php"><i class="fa fa-edit"></i> Update</a> |
-                                                <a href="position_delete.php"><i class="fa fa-times"></i> Delete</a>
-                                            </td>
-                                        </tr>
+                                        <?php $no = 1; ?>
+                                        <?php while($data = mysql_fetch_array($query)): ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><?php echo $data['name']; ?></td>
+                                                <td>
+                                                    <a href="position_edit.php?id=<?php echo $data['id_position']; ?>"><i class="fa fa-edit"></i> Update</a> |
+                                                    <a href="position_delete.php?id=<?php echo $data['id_position']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php endwhile ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -163,30 +85,21 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
     <script src="js/sb-admin-2.js"></script>
 
-
-    <!-- DataTables JavaScript -->
     <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
-    <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
     </script>
 
 </body>

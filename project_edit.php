@@ -25,7 +25,18 @@
 <?php
     include ("connect.php");
 
+    $id = $_GET['id'];
+
     $customer_query = mysql_query("SELECT * FROM customer");
+
+
+    // $query = mysql_query("SELECT * FROM project WHERE id_project='$id'") or die(mysql_error());
+    // $data = mysql_fetch_array($query);
+    $query = mysql_query("SELECT p.*, c.customer_name
+                        FROM project p
+                        LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        WHERE p.id_project = $id");
+    $data = mysql_fetch_array($query);
 ?>
 
 <body>
@@ -48,38 +59,41 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Project
+                            Update Project
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="project_add.php" method="POST">
+                                    <form role="form" action="project_update.php" method="POST">
+                                        <input type="hidden" name="id_project" value="<?php echo $id; ?>">
                                         <div class="form-group">
                                             <label>Project Name</label>
-                                            <input type="text" name="name" name="employee" class="form-control">
+                                            <input type="text" name="name" class="form-control" value="<?php echo $data['name']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea name="description" class="form-control" rows="3"></textarea>
+                                            <textarea name="description" class="form-control" rows="3"><?php echo $data['description']; ?></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Start Project</label>
-                                            <input type="date" name="start" class="form-control">
+                                            <input type="date" name="start" class="form-control" value="<?php echo $data['start']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>End Project</label>
-                                            <input type="date" name="end" class="form-control">
+                                            <input type="date" name="end" class="form-control" value="<?php echo $data['end']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Customer</label>
                                             <select name="id_customer" class="form-control">
-                                                <?php while($customer = mysql_fetch_array($customer_query)): ?>
-                                                    <option value="<?php echo $customer['id_customer'] ?>"><?php echo $customer['name'] ?></option>
+                                            <?php while($customer = mysql_fetch_array($customer_query)): ?>
+                                                <?php $selected = ""; ?>
+                                                <?php if($data['customer_name'] == $customer['customer_name']) $selected = "selected"; ?>
+                                                <option value="<?php echo $customer['id_customer'] ?>" <?php echo $selected;  ?>><?php echo $customer['customer_name'] ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                        <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="Back"></a>
                                     </form>
                                 </div>
                             </div>

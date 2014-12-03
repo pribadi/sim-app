@@ -25,6 +25,16 @@
 
 </head>
 
+<?php
+    include("connect.php");
+
+    mysql_select_db("sim");
+
+    $query = mysql_query("SELECT p.*, c.customer_name
+                        FROM project p
+                        LEFT JOIN customer c ON p.id_customer = c.id_customer");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -58,83 +68,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td><a href="project_detail.php">Aplikasi Perpustakaan</a></td>
-                                            <td>PT. Sagara Xinix Solusitama</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>20 - Mey - 2014</td>
-                                        </tr>
+                                        <?php $no = 1; ?>
+                                        <?php while($data = mysql_fetch_array($query)): ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><?php echo $data['name']; ?></a></td>
+                                                <td><?php echo $data['customer_name']; ?></td>
+                                                <td><?php echo $data['start']; ?></td>
+                                                <td><?php echo $data['end']; ?></td>
+                                            </tr>
+                                        <?php endwhile ?>
                                     </tbody>
                                 </table>
                             </div>

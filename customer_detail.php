@@ -24,7 +24,12 @@
 
 <?php
     include ("connect.php");
- ?>
+
+    $id = $_GET['id'];
+
+    $query = mysql_query("SELECT * FROM customer WHERE id_customer='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
+?>
 
 <body>
 
@@ -37,26 +42,47 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Position</h1>
+                    <h1 class="page-header">Customer</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Position
+                            Detail Customer
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="position_add.php" method="POST">
-                                        <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2">
                                             <label>Name</label>
-                                            <input type="text" name="name" class="form-control">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="list_position.php"><button class="btn btn-default">List</button></a>
-                                    </form>
+                                        <div class="col-lg-6">
+                                            <p><?php echo $data['name']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p><?php echo $data['phone']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p><?php echo $data['address']; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <a href="customer_list.php"><button class="btn btn-default">Back</button></a>
+                                    <a href="customer_edit.php?id=<?php echo $data['id_customer']; ?>"><button class="btn btn-primary">Update</button></a>
+                                    <a href="customer_delete.php?id=<?php echo $data['id_customer']; ?>"><button class="btn btn-danger">Delete</button></a>
+
                                 </div>
                             </div>
                         </div>

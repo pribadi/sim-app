@@ -25,6 +25,14 @@
 
 </head>
 
+<?php
+    include("connect.php");
+
+    mysql_select_db("sim");
+
+    $query = mysql_query("SELECT * FROM customer");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -56,61 +64,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td><a href="customer_detail.php">BUT CONOCOPHILLIPS INDONESIA INC. L</a></td>
-                                            <td>089812345678</td>
-                                        </tr>
+                                        <?php $no = 1; ?>
+                                        <?php while($data = mysql_fetch_array($query)): ?>
+
+                                            <?php
+
+                                            // echo "<pre>";
+                                            // print_r($data);
+                                            // exit();
+                                             ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><a href="customer_detail.php?id=<?php echo $data['id_customer']; ?>"><?php echo $data['name']; ?></a></td>
+                                                <td><?php echo $data['phone']; ?></td>
+                                            </tr>
+                                        <?php endwhile ?>
                                     </tbody>
                                 </table>
                             </div>

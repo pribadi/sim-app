@@ -22,6 +22,15 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $id = $_GET['id'];
+
+    $query = mysql_query("SELECT * FROM position WHERE id_position='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
+?>
+
 <body>
 
     <div id="wrapper">
@@ -47,10 +56,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="" method="POST">
-                                        <button type="submit" class="btn btn-danger">Yes</button>
-                                        <a href="position_list.php"><input type="button" class="btn btn-default" value="No"></a>
-                                    </form>
+                                    <a href="position_remove.php?id=<?php echo $data['id_position']; ?>"><button class="btn btn-danger">Yes</button></a>
+                                    <a href="position_detail.php?id=<?php echo $data['id_position']; ?>"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +65,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
