@@ -24,6 +24,11 @@
 
 <?php
     include ("connect.php");
+
+    $id = $_GET['id'];
+
+    $query = mysql_query("SELECT * FROM project WHERE id_project='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
 ?>
 
 <body>
@@ -37,34 +42,22 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Customer</h1>
+                    <h1 class="page-header">Project</h1>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
+            <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Customer
+                            Are you sure?
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="customer_add.php" method="POST">
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text" name="customer_name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="text" name="phone" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea name="address" class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="list_customer.php"><button class="btn btn-default">List</button></a>
-                                    </form>
+                                    <a href="project_remove.php?id=<?php echo $data['id_project']; ?>"><button class="btn btn-danger">Yes</button></a>
+                                    <a href="project_list.php"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +65,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 

@@ -22,20 +22,30 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $id = $_GET['id'];
+
+    $query = mysql_query("SELECT u.*, p.name
+                        FROM user u
+                        LEFT JOIN position p ON u.id_position = p.id_position
+                        WHERE id_user='$id'");
+
+    $data = mysql_fetch_array($query);
+?>
+
 <body>
 
     <div id="wrapper">
 
-        <!-- start navbar -->
         <?php include('navbar.php') ?>
-        <!-- end navbar -->
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">User</h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -52,7 +62,7 @@
                                             <label>Employee Number</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>2009141057</p>
+                                            <p><?php echo $data['employee_number']; ?></p>
                                         </div>
                                     </div>
 
@@ -61,7 +71,7 @@
                                             <label>Fullname</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Wahyu Pribadi</p>
+                                            <p><?php echo $data['fullname']; ?></p>
                                         </div>
                                     </div>
 
@@ -70,7 +80,7 @@
                                             <label>Email</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>wahyupribadi17@gmail.com</p>
+                                            <p><?php echo $data['email']; ?></p>
                                         </div>
                                     </div>
 
@@ -79,7 +89,7 @@
                                             <label>Place Birth</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Magelang</p>
+                                            <p><?php echo $data['place']; ?></p>
                                         </div>
                                     </div>
 
@@ -88,7 +98,7 @@
                                             <label>Date Birth</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>17-agustus-1990</p>
+                                            <p><?php echo $data['date_birth']; ?></p>
                                         </div>
                                     </div>
 
@@ -97,7 +107,7 @@
                                             <label>Marital Status</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Single</p>
+                                            <p><?php echo $data['status']; ?></p>
                                         </div>
                                     </div>
 
@@ -106,7 +116,7 @@
                                             <label>Sex</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Male</p>
+                                            <p><?php echo $data['sex']; ?></p>
                                         </div>
                                     </div>
 
@@ -115,16 +125,7 @@
                                             <label>Religion</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Islam</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Role</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>Admin</p>
+                                            <p><?php echo $data['religion']; ?></p>
                                         </div>
                                     </div>
 
@@ -133,7 +134,7 @@
                                             <label>Position</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Programmer</p>
+                                            <p><?php echo $data['name']; ?></p>
                                         </div>
                                     </div>
 
@@ -142,7 +143,7 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>089812345678</p>
+                                            <p><?php echo $data['phone']; ?></p>
                                         </div>
                                     </div>
 
@@ -151,14 +152,22 @@
                                             <label>Address</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>Jl.Merica Perum. Pondok Cabe Indah Blok A/9, RT/RW 06/009, Pondok Cabe Ilir, Pamulang, Tangerang Selatan</p>
+                                            <p><?php echo $data['address']; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Salary</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>Rp <?php echo $data['salary']; ?></p>
                                         </div>
                                     </div>
 
                                     <a href="user_list.php"><button class="btn btn-default">Back</button></a>
-                                    <a href="user_update.php"><button class="btn btn-primary">Update</button></a>
-                                    <a href="user_delete.php"><button class="btn btn-danger">Delete</button></a>
-
+                                    <a href="user_edit.php?id=<?php echo $data['id_user']; ?>"><button class="btn btn-primary">Update</button></a>
+                                    <a href="user_delete.php?id=<?php echo $data['id_user']; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
                             </div>
                         </div>

@@ -169,18 +169,18 @@
                     <a href="#"><i class="fa fa-database fa-fw"></i> Master Data<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Users <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-suitcase fa-fw"></i> Customer <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="user_create.php"> Create User</a>
+                                    <a href="customer_create.php"> Create Customer</a>
                                 </li>
                                 <li>
-                                    <a href="user_list.php"> List Users</a>
+                                    <a href="customer_list.php"> List Customer</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Positions <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Position <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="position_create.php"> Create Position</a>
@@ -191,13 +191,24 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-suitcase fa-fw"></i> Customers <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Position <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="customer_create.php"> Create Customer</a>
+                                    <a href="propos_create.php"> Create Project Position</a>
                                 </li>
                                 <li>
-                                    <a href="customer_list.php"> List Customer</a>
+                                    <a href="propos_list.php"> List Project Positions</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> User <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="user_create.php"> Create User</a>
+                                </li>
+                                <li>
+                                    <a href="user_list.php"> List Users</a>
                                 </li>
                             </ul>
                         </li>
@@ -211,6 +222,20 @@
                         </li>
                         <li>
                             <a href="project_list.php"> List Project</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="project_create.php"> Test 1</a>
+                        </li>
+                        <li>
+                            <a href="project_create.php"> Test 1</a>
+                        </li>
+                        <li>
+                            <a href="project_create.php"> Test 1</a>
                         </li>
                     </ul>
                 </li>

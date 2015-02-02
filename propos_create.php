@@ -24,7 +24,7 @@
 
 <?php
     include ("connect.php");
-?>
+ ?>
 
 <body>
 
@@ -37,33 +37,29 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Customer</h1>
+                    <h1 class="page-header">Project Position</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Customer
+                            Create Position
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="customer_add.php" method="POST">
+                                    <form role="form" action="propos_add.php" method="POST">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="customer_name" class="form-control">
+                                            <input type="text" name="name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="text" name="phone" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea name="address" class="form-control" rows="3"></textarea>
+                                            <label>Presentase</label>
+                                            <input type="text" name="presentase" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="list_customer.php"><button class="btn btn-default">List</button></a>
+                                        <a href="propos_list.php"><button class="btn btn-default">List</button></a>
                                     </form>
                                 </div>
                             </div>

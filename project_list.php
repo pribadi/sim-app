@@ -65,6 +65,7 @@
                                             <th>Customer</th>
                                             <th>Start Project</th>
                                             <th>End Project</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,10 +73,13 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><?php echo $data['name']; ?></a></td>
+                                                <td><a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><?php echo $data['project_name']; ?></a></td>
                                                 <td><?php echo $data['customer_name']; ?></td>
-                                                <td><?php echo $data['start']; ?></td>
-                                                <td><?php echo $data['end']; ?></td>
+                                                <td><?php echo date('d-m-Y',strtotime($data['start'])); ?></td>
+                                                <td><?php echo date('d-m-Y',strtotime($data['end'])); ?></td>
+                                                <td>
+                                                    <a href="project_delete.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                </td>
                                             </tr>
                                         <?php endwhile ?>
                                     </tbody>

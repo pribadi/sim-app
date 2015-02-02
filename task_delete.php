@@ -22,6 +22,19 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $id = $_GET['id_task'];
+
+    $query = mysql_query("SELECT * FROM task_project WHERE id_task='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
+
+    // var_dump($data);
+    // exit();
+
+ ?>
+
 <body>
 
     <div id="wrapper">
@@ -47,10 +60,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="" method="POST">
-                                        <button type="submit" class="btn btn-danger">Yes</button>
-                                        <a href="task_detail.php"><input type="button" class="btn btn-default" value="No"></a>
-                                    </form>
+                                    <a href="task_remove.php?id_task=<?php echo $id . '&id_project=' . $data['id_project']; ?>"><button class="btn btn-danger">Yes</button></a>
+                                    <a href="task_detail.php?id_task=<?php echo $id; ?>"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +69,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 

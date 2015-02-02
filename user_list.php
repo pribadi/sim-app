@@ -25,6 +25,16 @@
 
 </head>
 
+<?php
+    include("connect.php");
+
+    mysql_select_db("sim");
+
+    $query = mysql_query("SELECT u.*, p.name
+                        FROM user u
+                        LEFT JOIN position p ON u.id_position = p.id_position");
+?>
+
 <body>
 
     <div id="wrapper">
@@ -62,114 +72,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="user_detail.php">2009141057</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>wahyupribadi17@gmail.com</td>
-                                            <td>17 - August - 1990</td>
-                                            <td>Male</td>
-                                            <td>Programmer</td>
-                                        </tr>
+                                        <?php $no = 1; ?>
+                                        <?php while($data = mysql_fetch_array($query)): ?>
+                                            <tr>
+                                                <td><?php echo $no++; ?></td>
+                                                <td><a href="user_detail.php?id=<?php echo $data['id_user']; ?>"><?php echo $data['employee_number']; ?></a></td>
+                                                <td><?php echo $data['fullname']; ?></td>
+                                                <td><?php echo $data['email']; ?></td>
+                                                <td><?php echo $data['date_birth']; ?></td>
+                                                <td><?php echo $data['sex']; ?></td>
+                                                <td><?php echo $data['name']; ?></td>
+                                            </tr>
+                                        <?php endwhile ?>
                                     </tbody>
                                 </table>
                             </div>

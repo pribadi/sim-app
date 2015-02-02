@@ -59,7 +59,7 @@
                                             <label>Name</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p><?php echo $data['name']; ?></p>
+                                            <p><?php echo $data['customer_name']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">

@@ -22,6 +22,20 @@
 
 </head>
 
+<?php
+
+    include ("connect.php");
+
+    $id = $_GET['id_task'];
+
+    $query_task = mysql_query("SELECT t.*,c.*,u.fullname
+        FROM task_project t
+        LEFT JOIN crew_project c ON t.id_crew = c.id_crew
+        LEFT JOIN user u ON c.id_user = u.id_user
+        WHERE t.id_task = $id
+        ");
+ ?>
+
 <body>
 
     <div id="wrapper">
@@ -46,64 +60,68 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <?php while($task = mysql_fetch_array($query_task)): ?>
+                                    <?php
+                                        // var_dump($task);
+                                        // exit();
+                                     ?>
                                 <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Task Name</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>: CRUD User</p>
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Description</label>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>Task Name</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo $task['task_name']; ?></p>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, recusandae in dignissimos laudantium cumque dolor ex nobis, quo deserunt nihil similique officiis consequatur obcaecati excepturi accusantium esse a reiciendis suscipit.</p>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>Assign</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo $task['fullname']; ?></p>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Start Task</label>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>Description</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo $task['description']; ?></p>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <p>: 1 - January - 2014</p>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>Start Task</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo date('d-m-Y',strtotime($task['start_task'])); ?></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>End Task</label>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>End Task</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo date('d-m-Y',strtotime($task['end_task'])); ?></p>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <p>: 20 - May - 2014</p>
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label>Status</label>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>: <?php echo $task['status']; ?></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Assign</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>: Programmer A</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Status</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>: On Progress</p>
-                                        </div>
-                                    </div>
-
-                                    <a href="project_detail.php"><button class="btn btn-default">Back</button></a>
-                                    <a href="task_update.php"><button class="btn btn-primary">Update</button></a>
-                                    <a href="task_delete.php"><button class="btn btn-danger">Delete</button></a>
-
+                                        <a href="project_detail.php?id=<?php echo $task['id_project']; ?>"><button class="btn btn-default">Back</button></a>
+                                        <a href="task_edit.php?id=<?php echo $task['id_task']; ?>"><button class="btn btn-primary">Update</button></a>
+                                        <a href="task_delete.php?id_task=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
+                                    <?php endwhile ?>
+
+
                             </div>
                         </div>
                     </div>

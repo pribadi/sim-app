@@ -2,13 +2,14 @@
 
     include("connect.php");
 
-    $name = $_POST['name'];
+    $project_name = $_POST['project_name'];
     $description = $_POST['description'];
     $start = $_POST['start'];
     $end = $_POST['end'];
     $id_customer = $_POST['id_customer'];
+    $value_project = $_POST['value_project'];
 
-    $query = "INSERT INTO project (name,description,start,end,id_customer) VALUES ('$name','$description','$start','$end','$id_customer')";
+    $query = "INSERT INTO project (project_name,description,start,end,id_customer,value_project) VALUES ('$project_name','$description','$start','$end','$id_customer','$value_project')";
 
     $result = mysql_query($query);
 

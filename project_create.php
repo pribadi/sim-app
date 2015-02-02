@@ -56,7 +56,7 @@
                                     <form role="form" action="project_add.php" method="POST">
                                         <div class="form-group">
                                             <label>Project Name</label>
-                                            <input type="text" name="name" name="employee" class="form-control">
+                                            <input type="text" name="project_name" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
@@ -73,10 +73,15 @@
                                         <div class="form-group">
                                             <label>Customer</label>
                                             <select name="id_customer" class="form-control">
+                                                <option value="">...</option>
                                                 <?php while($customer = mysql_fetch_array($customer_query)): ?>
-                                                    <option value="<?php echo $customer['id_customer'] ?>"><?php echo $customer['name'] ?></option>
+                                                    <option value="<?php echo $customer['id_customer'] ?>"><?php echo $customer['customer_name'] ?></option>
                                                 <?php endwhile; ?>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value Project</label>
+                                            <input type="text" name="value_project" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

@@ -22,13 +22,20 @@
 
 </head>
 
+<?php
+    include ("connect.php");
+
+    $id = $_GET['id'];
+
+    $query = mysql_query("SELECT * FROM user WHERE id_user='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
+?>
+
 <body>
 
     <div id="wrapper">
 
-        <!-- start navbar -->
         <?php include('navbar.php') ?>
-        <!-- end navbar -->
 
         <div id="page-wrapper">
             <div class="row">
@@ -47,10 +54,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="" method="POST">
-                                        <button type="submit" class="btn btn-danger">Yes</button>
-                                        <a href="user_detail.php"><input type="button" class="btn btn-default" value="No"></a>
-                                    </form>
+                                    <a href="user_remove.php?id=<?php echo $data['id_user']; ?>"><button class="btn btn-danger">Yes</button></a>
+                                    <a href="user_detail.php?id=<?php echo $data['id_user']; ?>"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>

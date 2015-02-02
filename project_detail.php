@@ -36,9 +36,6 @@
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
 
-    $position_query = mysql_query("SELECT * FROM position");
-
-
 
 
     $datetime = date_create(date('Y-m-d h:i:s'));
@@ -60,6 +57,7 @@
     // exit();
     $line = ($totalprogres/$totalday)*100;
 
+
 ?>
 
 <body>
@@ -73,7 +71,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project / <?php echo $data['name']; ?></h1>
+                    <h1 class="page-header">Project / <?php echo $data['project_name']; ?></h1>
                 </div>
             </div>
 
@@ -136,7 +134,7 @@
                                             <label>Project Name</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p>: <?php echo $data['name']; ?></p>
+                                            <p>: <?php echo $data['project_name']; ?></p>
                                         </div>
                                         <div class="col-lg-2">
                                             <a href="project_edit.php?id=<?php echo $data['id_project']; ?>" style="float: right;"><button class="btn btn-primary">Update</button></a>
@@ -157,7 +155,7 @@
                                             <label>Start Project</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: <?php echo date('d / F / Y',strtotime($data['start'])); ?></p>
+                                            <p>: <?php echo date('d-m-Y',strtotime($data['start'])); ?></p>
                                         </div>
                                     </div>
 
@@ -166,7 +164,7 @@
                                             <label>End Project</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: <?php echo date('d / F / Y',strtotime($data['end'])); ?></p>
+                                            <p>: <?php echo date('d-m-Y',strtotime($data['end'])); ?></p>
                                         </div>
                                     </div>
 
@@ -176,6 +174,15 @@
                                         </div>
                                         <div class="col-lg-10">
                                             <p>: <?php echo $data['description']; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Value Project</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['value_project']; ?></p>
                                         </div>
                                     </div>
 
@@ -196,46 +203,65 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
+
+                                    <?php
+                                        $query_propos = mysql_query("SELECT c.*, p.id_project, u.fullname, pp.name
+                                            FROM crew_project c
+                                            LEFT JOIN project p ON c.id_project = p.id_project
+                                            LEFT JOIN user u ON c.id_user = u.id_user
+                                            LEFT JOIN project_position pp ON c.id_propos = pp.id_propos
+                                            WHERE p.id_project = $id");
+                                     ?>
+
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
+                                                <th>Crew Name</th>
+                                                <th>Project Position</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php while($cp = mysql_fetch_array($query_propos)): ?>
                                             <tr>
-                                                <td>Wahyu Pribadi</td>
-                                                <td>Project Manager</td>
+                                                <td><?php echo $cp['fullname']; ?></td>
+                                                <td><?php echo $cp['name']; ?></td>
                                                 <td>
-                                                    <a href="deuser_edit.php?id=<?php echo $data['id']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="crew_delete.php?id=<?php echo $cp['id_crew']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                             </tr>
+                                            <?php endwhile ?>
                                         </tbody>
                                     </table>
 
+                                    <?php
+                                        $propos_query = mysql_query("SELECT * FROM project_position");
+                                        $user_query = mysql_query("SELECT * FROM user");
+                                    ?>
+
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form role="form" action="user_action.php" method="POST">
+                                            <form role="form" action="crew_add.php" method="POST">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Name</label>
-                                                            <select name="name" class="form-control">
-                                                                <option>...</option>
-                                                                <option value="">Option</option>
-                                                                <option value="">Option</option>
-                                                                <option value="">Option</option>
+                                                            <label>Crew Name</label>
+                                                            <select name="id_user" class="form-control">
+                                                                <option value="">...</option>
+                                                                <?php while($user = mysql_fetch_array($user_query)): ?>
+                                                                    <option value="<?php echo $user['id_user'] ?>"><?php echo $user['fullname'] ?></option>
+                                                                <?php endwhile; ?>
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <input type="hidden" name="id_project" value="<?php echo $data['id_project']; ?>">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Position</label>
-                                                            <select name="id_position" class="form-control">
-                                                                <?php while($position = mysql_fetch_array($position_query)): ?>
-                                                                    <option value="<?php echo $position['id_position'] ?>"><?php echo $position['name'] ?></option>
+                                                            <label>Project Position</label>
+                                                            <select name="id_propos" class="form-control">
+                                                                <option value="">...</option>
+                                                                <?php while($propos = mysql_fetch_array($propos_query)): ?>
+                                                                    <option value="<?php echo $propos['id_propos'] ?>"><?php echo $propos['name'] ?></option>
                                                                 <?php endwhile; ?>
                                                             </select>
                                                         </div>
@@ -262,7 +288,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
 
-                                <a href="task_create.php"><button class="btn btn-primary">Add Task</button></a><br><br>
+                                <a href="task_create.php?id=<?php echo $_GET['id']; ?>"><button class="btn btn-primary">Add Task</button></a><br><br>
 
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
@@ -275,31 +301,27 @@
                                             <th>Status</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                        $query_task = mysql_query("SELECT t.*,c.*,u.fullname
+                                            FROM task_project t
+                                            LEFT JOIN crew_project c ON t.id_crew = c.id_crew
+                                            LEFT JOIN user u ON c.id_user = u.id_user
+                                            WHERE t.id_project = $id
+                                            ");
+                                     ?>
                                     <tbody>
+                                        <?php $no=1; ?>
+                                        <?php while($task = mysql_fetch_array($query_task)): ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td><a href="task_detail.php">CRUD user</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>Pending</td>
+                                            <td><?php echo $no++; ?></td>
+                                            <td><a href="task_detail.php?id_task=<?php echo $task['id_task']; ?>"><?php echo $task['task_name']; ?></a></td>
+                                            <td><?php echo $task['fullname']; ?></td>
+                                            <td><p><?php echo date('d-m-Y',strtotime($task['start_task'])); ?></p></td>
+                                            <td><p><?php echo date('d-m-Y',strtotime($task['end_task'])); ?></p></td>
+                                            <td><?php echo $task['status']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="task_detail.php">CRUD user</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>On Progress</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><a href="task_detail.php">CRUD user</a></td>
-                                            <td>Wahyu Pribadi</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>1 - January - 2014</td>
-                                            <td>Done</td>
-                                        </tr>
+                                        <?php endwhile ?>
+
                                     </tbody>
                                 </table>
 

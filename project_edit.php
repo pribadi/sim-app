@@ -29,9 +29,6 @@
 
     $customer_query = mysql_query("SELECT * FROM customer");
 
-
-    // $query = mysql_query("SELECT * FROM project WHERE id_project='$id'") or die(mysql_error());
-    // $data = mysql_fetch_array($query);
     $query = mysql_query("SELECT p.*, c.customer_name
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
@@ -68,7 +65,7 @@
                                         <input type="hidden" name="id_project" value="<?php echo $id; ?>">
                                         <div class="form-group">
                                             <label>Project Name</label>
-                                            <input type="text" name="name" class="form-control" value="<?php echo $data['name']; ?>">
+                                            <input type="text" name="project_name" class="form-control" value="<?php echo $data['project_name']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
@@ -91,6 +88,10 @@
                                                 <option value="<?php echo $customer['id_customer'] ?>" <?php echo $selected;  ?>><?php echo $customer['customer_name'] ?></option>
                                                 <?php endwhile; ?>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value Project</label>
+                                            <input type="text" name="value_project" class="form-control" value="<?php echo $data['value_project']; ?>">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="Back"></a>

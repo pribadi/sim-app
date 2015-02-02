@@ -2,11 +2,11 @@
     include("connect.php");
 
     $id = $_POST['id_customer'];
-    $name = $_POST['name'];
+    $customer_name = $_POST['customer_name'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
 
-    $query = mysql_query("UPDATE customer SET name='$name', phone='$phone', address='$address' WHERE id_customer='$id'") OR DIE(mysql_error());
+    $query = mysql_query("UPDATE customer SET customer_name='$customer_name', phone='$phone', address='$address' WHERE id_customer='$id'") OR DIE(mysql_error());
 
     if ($query) {
         echo "<script>window.alert('Customer Successfully Updated');</script>";

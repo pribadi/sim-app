@@ -23,7 +23,14 @@
 </head>
 
 <?php
-    include ("connect.php");
+    include("connect.php");
+
+    $id = $_GET['id'];
+    $query = mysql_query("SELECT * FROM project_position WHERE id_propos='$id'") or die(mysql_error());
+    $data = mysql_fetch_array($query);
+    // echo "<pre>";
+    // print_r($data);
+    // exit();
 ?>
 
 <body>
@@ -37,33 +44,30 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Customer</h1>
+                    <h1 class="page-header">Project Position</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Customer
+                            Update Position
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="customer_add.php" method="POST">
+                                    <form role="form" action="propos_update.php" method="POST">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="customer_name" class="form-control">
+                                            <input type="hidden" name="id_propos" value="<?php echo $id; ?>">
+                                            <input type="text" name="name" class="form-control" value="<?php echo $data['name'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="text" name="phone" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea name="address" class="form-control" rows="3"></textarea>
+                                            <label>Presentase</label>
+                                            <input type="text" name="presentase" class="form-control" value="<?php echo $data['presentase'] ?>">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="list_customer.php"><button class="btn btn-default">List</button></a>
+                                        <a href="propos_list.php"><input type="button" class="btn btn-default" value="Back"></a>
                                     </form>
                                 </div>
                             </div>
@@ -72,11 +76,7 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
