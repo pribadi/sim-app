@@ -36,8 +36,17 @@
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
 
+    // progress chart
+    $total_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id");
+    $total = mysql_num_rows($total_task);
 
+    $done_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id AND status = 'done'");
+    $done = mysql_num_rows($done_task);
 
+    $progres = ($done/$total)*100;
+    $rest = 100 - $progres;
+
+    // total hari
     $datetime = date_create(date('Y-m-d h:i:s'));
 
     $start = date_create($data['start']);
@@ -51,12 +60,8 @@
 
     $restdiff = date_diff($datetime, $end);
     $totalrest = $restdiff->format('%a')+1;
-    // echo $totalday;
-    // echo $totalprogres;
-    // echo $totalrest;
-    // exit();
-    $line = ($totalprogres/$totalday)*100;
 
+    $line = ($totalprogres/$totalday)*100;
 
 ?>
 
@@ -84,21 +89,31 @@
                         </div>
 
                         <div class="panel-body">
-                            <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Progress Project</strong>
+                                    <span class="pull-right text-muted"><?php echo $rest; ?>% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progres . "%"; ?>">
+                                        <span class="pull-right text-muted"><?php echo $progres; ?>% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <?php if ($datetime > $end): ?>
                                 <div>
                                     <p>
-                                        <strong>Progress Project</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
+                                        <strong>Deadline</strong>
+                                        <span class="pull-right text-muted">0 Days Again</span>
                                     </p>
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="pull-right text-muted">40% Complete (success)</span>
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            <span class="pull-right text-muted">Done Days </span>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-
-                            <a href="#">
+                            <?php else: ?>
                                 <div>
                                     <p>
                                         <strong>Deadline</strong>
@@ -110,12 +125,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            <?php endif ?>
 
                         </div>
-
                     </div>
-
                 </div>
             </div>
 

@@ -25,6 +25,8 @@
 <?php
     include ("connect.php");
 
+    $id = $_GET['id'];
+
  ?>
 
 <body>
@@ -76,7 +78,7 @@
                                                 FROM crew_project c
                                                 LEFT JOIN project p ON c.id_project = p.id_project
                                                 INNER JOIN user u ON c.id_user = u.id_user
-                                                WHERE p.id_project = $_GET[id]");
+                                                WHERE p.id_project = $id");
                                         ?>
 
                                         <div class="form-group">
@@ -98,7 +100,7 @@
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="project_detail.php"><input type="button" class="btn btn-default" value="Back"></a>
+                                        <a href="project_detail.php?id=<?php echo $id; ?>"><input type="button" class="btn btn-default" value="Back"></a>
                                     </form>
                                 </div>
                             </div>
