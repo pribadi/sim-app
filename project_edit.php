@@ -28,12 +28,17 @@
     $id = $_GET['id'];
 
     $customer_query = mysql_query("SELECT * FROM customer");
+    $statpro_query = mysql_query("SELECT * FROM status_project");
 
-    $query = mysql_query("SELECT p.*, c.customer_name
+    $query = mysql_query("SELECT p.*, c.customer_name, sp.name_status_project
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        LEFT JOIN status_project sp ON p.id_status_project = sp.id_status_project
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
+
+    // var_dump($data);
+    // exit();
 ?>
 
 <body>
@@ -92,6 +97,16 @@
                                         <div class="form-group">
                                             <label>Value Project</label>
                                             <input type="text" name="value_project" class="form-control" value="<?php echo $data['value_project']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status Project</label>
+                                            <select name="id_status_project" class="form-control">
+                                            <?php while($statpro = mysql_fetch_array($statpro_query)): ?>
+                                                <?php $selected = ""; ?>
+                                                <?php if($data['name_status_project'] == $statpro['name_status_project']) $selected = "selected"; ?>
+                                                <option value="<?php echo $statpro['id_status_project'] ?>" <?php echo $selected;  ?>><?php echo $statpro['name_status_project'] ?></option>
+                                                <?php endwhile; ?>
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="Back"></a>

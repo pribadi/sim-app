@@ -30,9 +30,10 @@
     $id = $_GET['id'];
 
     // query detail project
-    $query = mysql_query("SELECT p.*, c.customer_name
+    $query = mysql_query("SELECT p.*, c.customer_name, sp.name_status_project
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        LEFT JOIN status_project sp ON p.id_status_project = sp.id_status_project
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
 
@@ -40,11 +41,17 @@
     $total_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id");
     $total = mysql_num_rows($total_task);
 
+
     $done_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id AND status = 'done'");
     $done = mysql_num_rows($done_task);
 
-    $progres = ($done/$total)*100;
-    $rest = 100 - $progres;
+    if ($done == 0) {
+        $progres = 0;
+        $rest = 0;
+    } else {
+        $progres = ($done/$total)*100;
+        $rest = 100 - $progres;
+    }
 
     // total hari
     $datetime = date_create(date('Y-m-d h:i:s'));
@@ -62,6 +69,7 @@
     $totalrest = $restdiff->format('%a')+1;
 
     $line = ($totalprogres/$totalday)*100;
+
 
 ?>
 
@@ -196,6 +204,15 @@
                                         </div>
                                         <div class="col-lg-10">
                                             <p>: <?php echo $data['value_project']; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Status Project</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['name_status_project']; ?></p>
                                         </div>
                                     </div>
 

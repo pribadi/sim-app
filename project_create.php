@@ -26,6 +26,11 @@
     include ("connect.php");
 
     $customer_query = mysql_query("SELECT * FROM customer");
+
+    $status_query = mysql_query("SELECT * FROM status_project");
+
+    // var_dump($status_query);
+    // exit();
 ?>
 
 <body>
@@ -82,6 +87,15 @@
                                         <div class="form-group">
                                             <label>Value Project</label>
                                             <input type="text" name="value_project" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select name="id_status_project" class="form-control">
+                                                <option value="">...</option>
+                                                <?php while($status = mysql_fetch_array($status_query)): ?>
+                                                    <option value="<?php echo $status['id_status_project'] ?>"><?php echo $status['name_status_project'] ?></option>
+                                                <?php endwhile; ?>
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

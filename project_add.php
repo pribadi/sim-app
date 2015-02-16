@@ -8,8 +8,9 @@
     $end = $_POST['end'];
     $id_customer = $_POST['id_customer'];
     $value_project = $_POST['value_project'];
+    $id_status_project = $_POST['id_status_project'];
 
-    $query = "INSERT INTO project (project_name,description,start,end,id_customer,value_project) VALUES ('$project_name','$description','$start','$end','$id_customer','$value_project')";
+    $query = "INSERT INTO project (project_name,description,start,end,id_customer,value_project,id_status_project) VALUES ('$project_name','$description','$start','$end','$id_customer','$value_project','$id_status_project')";
 
     $result = mysql_query($query);
 
