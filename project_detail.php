@@ -55,7 +55,6 @@
     // total hari
     $datetime = date_create(date('Y-m-d h:i:s'));
 
-
     $start = date_create($data['start']);
     $end = date_create($data['end']);
 
@@ -69,7 +68,6 @@
     $totalrest = $restdiff->format('%a')+1;
 
     $line = ($totalprogres/$totalday)*100;
-
 
 ?>
 
@@ -116,7 +114,19 @@
                                         <span class="pull-right text-muted">0 Days Again</span>
                                     </p>
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            <span class="pull-right text-muted">Done Days </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php elseif($datetime < $start): ?>
+                                <div>
+                                    <p>
+                                        <strong>Deadline</strong>
+                                        <span class="pull-right text-muted">0 Days Again</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                             <span class="pull-right text-muted">Done Days </span>
                                         </div>
                                     </div>
@@ -389,8 +399,6 @@
 
 
     </div>
-
-
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
