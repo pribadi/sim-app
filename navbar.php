@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="index.php">Project Management</a>
     </div>
 
-    <!-- Header menu -->
+
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -187,6 +187,17 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Status <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="prostat_create.php"> Create Project Status </a>
+                                </li>
+                                <li>
+                                    <a href="prostat_list.php"> List Project Status</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> User <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="prostat_create.php"> Create Project Status </a>

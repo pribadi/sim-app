@@ -27,6 +27,10 @@
 
     $customer_query = mysql_query("SELECT * FROM customer");
 
+    $status_query = mysql_query("SELECT * FROM status_project");
+
+    // var_dump($status_query);
+    // exit();
 ?>
 
 <body>
