@@ -30,10 +30,9 @@
     $id = $_GET['id'];
 
     // query detail project
-    $query = mysql_query("SELECT p.*, c.customer_name, sp.name_status_project
+    $query = mysql_query("SELECT p.*, c.customer_name
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
-                        LEFT JOIN status_project sp ON p.id_status_project = sp.id_status_project
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
 
@@ -239,16 +238,6 @@
                                             <p>: <?php echo $data['status_project']; ?></p>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Status Project</label>
-                                        </div>
-                                        <div class="col-lg-10">
-                                            <p>: <?php echo $data['name_status_project']; ?></p>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
