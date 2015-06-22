@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">List Project</div>
+                        <div class="panel-heading"><a href="project_create.php"><button class="btn btn-primary">Add</button></a></div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -65,6 +65,7 @@
                                             <th>Customer</th>
                                             <th>Start Project</th>
                                             <th>End Project</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -77,6 +78,7 @@
                                                 <td><?php echo $data['customer_name']; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['start'])); ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['end'])); ?></td>
+                                                <td><?php echo $data['status_project']; ?></td>
                                                 <td>
                                                     <a href="project_delete.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>

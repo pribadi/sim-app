@@ -27,12 +27,7 @@
 
     $id = $_GET['id'];
 
-    $position_query = mysql_query("SELECT * FROM position");
-
-    $query = mysql_query("SELECT u.*, p.name
-                        FROM user u
-                        LEFT JOIN position p ON u.id_position = p.id_position
-                        WHERE id_user='$id'");
+    $query = mysql_query("SELECT * FROM user WHERE id_user='$id'");
     $data = mysql_fetch_array($query);
 
 ?>
@@ -111,13 +106,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Position</label>
-                                                <select name="id_position" class="form-control">
-                                                <?php while($pos = mysql_fetch_array($position_query)): ?>
-                                                    <?php $selected = ""; ?>
-                                                    <?php if($data['name'] == $pos['name']) $selected = "selected"; ?>
-                                                    <option value="<?php echo $pos['id_position']; ?>" <?php echo $selected; ?>><?php echo $pos['name']; ?></option>
-                                                <?php endwhile; ?>
-                                                </select>
+                                            <select name="position" class="form-control">
+                                                <option <?php if($data['position'] == 'CEO') echo "selected"; ?> value="CEO">CEO</option>
+                                                <option <?php if($data['position'] == 'CIO') echo "selected"; ?> value="CIO">CIO</option>
+                                                <option <?php if($data['position'] == 'COO') echo "selected"; ?> value="COO">COO</option>
+                                                <option <?php if($data['position'] == 'Finance') echo "selected"; ?> value="Finance">Finance</option>
+                                                <option <?php if($data['position'] == 'Project Manager') echo "selected"; ?> value="Project Manager">Project Manager</option>
+                                                <option <?php if($data['position'] == 'Project Member') echo "selected"; ?> value="Project Member">Project Member</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
@@ -126,10 +122,6 @@
                                         <div class="form-group">
                                             <label>Address</label>
                                             <textarea name="address" class="form-control" rows="3"><?php echo $data['address'] ?></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Salary</label>
-                                            <input name="salary" class="form-control" value="<?php echo $data['salary'] ?>">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

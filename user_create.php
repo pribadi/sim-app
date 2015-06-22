@@ -24,8 +24,6 @@
 
 <?php
     include ("connect.php");
-
-    $position_query = mysql_query("SELECT * FROM position");
 ?>
 
 <body>
@@ -104,11 +102,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Position</label>
-                                            <select name="id_position" class="form-control">
+                                            <select name="position" class="form-control">
                                                 <option>...</option>
-                                                <?php while($pos = mysql_fetch_array($position_query)): ?>
-                                                    <option value="<?php echo $pos['id_position']; ?>"><?php echo $pos['name']; ?></option>
-                                                <?php endwhile; ?>
+                                                <option value="CEO">CEO</option>
+                                                <option value="CIO">CIO</option>
+                                                <option value="COO">COO</option>
+                                                <option value="Finance">Finance</option>
+                                                <option value="Project Manager">Project Manager</option>
+                                                <option value="Project Member">Project Member</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -118,10 +119,6 @@
                                         <div class="form-group">
                                             <label>Address</label>
                                             <textarea name="address" class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Salary</label>
-                                            <input name="salary" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

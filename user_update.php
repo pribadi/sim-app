@@ -10,12 +10,11 @@
     $status = $_POST['status'];
     $sex = $_POST['sex'];
     $religion = $_POST['religion'];
-    $id_position = $_POST['id_position'];
+    $position = $_POST['position'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $salary = $_POST['salary'];
 
-    $query = mysql_query("UPDATE user SET employee_number='$employee_number', fullname='$fullname', email='$email', place='$place', date_birth='$date_birth', status='$status', sex='$sex', religion='$religion', id_position='$id_position', phone='$phone', address='$address', salary='$salary' WHERE id_user='$id'") OR DIE(mysql_error());
+    $query = mysql_query("UPDATE user SET employee_number='$employee_number', fullname='$fullname', email='$email', place='$place', date_birth='$date_birth', status='$status', sex='$sex', religion='$religion', position='$position', phone='$phone', address='$address' WHERE id_user='$id'") OR DIE(mysql_error());
 
     if ($query) {
         echo "<script>window.alert('User Successfully Updated');</script>";

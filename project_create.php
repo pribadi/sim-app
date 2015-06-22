@@ -26,6 +26,7 @@
     include ("connect.php");
 
     $customer_query = mysql_query("SELECT * FROM customer");
+
 ?>
 
 <body>
@@ -59,16 +60,16 @@
                                             <input type="text" name="project_name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea name="description" class="form-control" rows="3"></textarea>
+                                            <label>Category</label>
+                                            <select name="category" class="form-control">
+                                                <option>...</option>
+                                                <option value="Mobile">Mobile</option>
+                                                <option value="Web">Web</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Start Project</label>
-                                            <input type="date" name="start" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>End Project</label>
-                                            <input type="date" name="end" class="form-control">
+                                            <label>Technology Platform</label>
+                                            <input type="text" name="platform" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Customer</label>
@@ -80,8 +81,35 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Value Project</label>
+                                            <label>Start Project</label>
+                                            <input type="date" name="start" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>End Project</label>
+                                            <input type="date" name="end" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value</label>
                                             <input type="text" name="value_project" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>URL Demo</label>
+                                            <input type="text" name="url_demo" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea name="description" class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select name="status_project" class="form-control">
+                                                <option>...</option>
+                                                <option value="Close">Close</option>
+                                                <option value="Maintenance">Maintenance</option>
+                                                <option value="Open">Open</option>
+                                                <option value="Supporting">Supporting</option>
+                                                <option value="Waiting">Waiting</option>
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

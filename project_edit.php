@@ -68,16 +68,15 @@
                                             <input type="text" name="project_name" class="form-control" value="<?php echo $data['project_name']; ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea name="description" class="form-control" rows="3"><?php echo $data['description']; ?></textarea>
+                                            <label>Category</label>
+                                            <select name="category" class="form-control">
+                                                <option <?php if($data['category'] == 'Mobile') echo "selected"; ?> value="Mobile">Mobile</option>
+                                                <option <?php if($data['category'] == 'Web') echo "selected"; ?> value="Web">Web</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Start Project</label>
-                                            <input type="date" name="start" class="form-control" value="<?php echo $data['start']; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>End Project</label>
-                                            <input type="date" name="end" class="form-control" value="<?php echo $data['end']; ?>">
+                                            <label>Technology Platform</label>
+                                            <input type="text" name="platform" class="form-control" value="<?php echo $data['platform']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Customer</label>
@@ -90,8 +89,34 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label>Start Project</label>
+                                            <input type="date" name="start" class="form-control" value="<?php echo $data['start']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>End Project</label>
+                                            <input type="date" name="end" class="form-control" value="<?php echo $data['end']; ?>">
+                                        </div>
+                                        <div class="form-group">
                                             <label>Value Project</label>
                                             <input type="text" name="value_project" class="form-control" value="<?php echo $data['value_project']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>URL Demo</label>
+                                            <input type="text" name="url_demo" class="form-control" value="<?php echo $data['url_demo']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea name="description" class="form-control" rows="3"><?php echo $data['description']; ?></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status Project</label>
+                                            <select name="status_project" class="form-control">
+                                                <option <?php if($data['status_project'] == 'Close') echo "selected"; ?> value="Close">Close</option>
+                                                <option <?php if($data['status_project'] == 'Maintenance') echo "selected"; ?> value="Maintenance">Maintenance</option>
+                                                <option <?php if($data['status_project'] == 'Open') echo "selected"; ?> value="Open">Open</option>
+                                                <option <?php if($data['status_project'] == 'Supporting') echo "selected"; ?> value="Supporting">Supporting</option>
+                                                <option <?php if($data['status_project'] == 'Waiting') echo "selected"; ?> value="Waiting">Waiting</option>
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="Back"></a>

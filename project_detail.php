@@ -40,14 +40,21 @@
     $total_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id");
     $total = mysql_num_rows($total_task);
 
+
     $done_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id AND status = 'done'");
     $done = mysql_num_rows($done_task);
 
-    $progres = ($done/$total)*100;
-    $rest = 100 - $progres;
+    if ($done == 0) {
+        $progres = 0;
+        $rest = 0;
+    } else {
+        $progres = ($done/$total)*100;
+        $rest = 100 - $progres;
+    }
 
     // total hari
     $datetime = date_create(date('Y-m-d h:i:s'));
+
 
     $start = date_create($data['start']);
     $end = date_create($data['end']);
@@ -62,6 +69,7 @@
     $totalrest = $restdiff->format('%a')+1;
 
     $line = ($totalprogres/$totalday)*100;
+
 
 ?>
 
@@ -92,7 +100,7 @@
                             <div>
                                 <p>
                                     <strong>Progress Project</strong>
-                                    <span class="pull-right text-muted"><?php echo $rest; ?>% Complete</span>
+                                    <span class="pull-right text-muted"><?php echo $rest; ?>% Not Complete</span>
                                 </p>
                                 <div class="progress progress-striped active">
                                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progres . "%"; ?>">
@@ -153,7 +161,22 @@
                                             <a href="project_edit.php?id=<?php echo $data['id_project']; ?>" style="float: right;"><button class="btn btn-primary">Update</button></a>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Category</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['category']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Technology Platform</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['platform']; ?></p>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-2">
                                             <label>Customer</label>
@@ -180,6 +203,22 @@
                                             <p>: <?php echo date('d-m-Y',strtotime($data['end'])); ?></p>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Value Project</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: Rp <?php echo number_format($data['value_project'],0,',','.'); ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>URL Demo</label>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <p>: <?php echo $data['url_demo']; ?></p>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-lg-2">
@@ -190,12 +229,13 @@
                                         </div>
                                     </div>
 
+
                                     <div class="row">
                                         <div class="col-lg-2">
-                                            <label>Value Project</label>
+                                            <label>Status Project</label>
                                         </div>
                                         <div class="col-lg-10">
-                                            <p>: <?php echo $data['value_project']; ?></p>
+                                            <p>: <?php echo $data['status_project']; ?></p>
                                         </div>
                                     </div>
 
@@ -327,7 +367,7 @@
                                         <?php while($task = mysql_fetch_array($query_task)): ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><a href="task_detail.php?id_task=<?php echo $task['id_task']; ?>"><?php echo $task['task_name']; ?></a></td>
+                                            <td><a href="task_detail.php?id_task=<?php echo $task['id_task'];?>&id_project=<?php echo $id; ?>"><?php echo $task['task_name']; ?></a></td>
                                             <td><?php echo $task['fullname']; ?></td>
                                             <td><p><?php echo date('d-m-Y',strtotime($task['start_task'])); ?></p></td>
                                             <td><p><?php echo date('d-m-Y',strtotime($task['end_task'])); ?></p></td>

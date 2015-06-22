@@ -37,25 +37,25 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Position</h1>
+                    <h1 class="page-header">Project Status</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create Position
+                            Create Project Status
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="position_add.php" method="POST">
+                                    <form role="form" action="prostat_add.php" method="POST">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" class="form-control">
+                                            <input type="text" name="name_status_project" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="list_position.php"><button class="btn btn-default">List</button></a>
+                                        <a href="prostat_list.php"><button class="btn btn-default">List</button></a>
                                     </form>
                                 </div>
                             </div>

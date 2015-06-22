@@ -27,10 +27,7 @@
 
     $id = $_GET['id'];
 
-    $query = mysql_query("SELECT u.*, p.name
-                        FROM user u
-                        LEFT JOIN position p ON u.id_position = p.id_position
-                        WHERE id_user='$id'");
+    $query = mysql_query("SELECT * FROM user WHERE id_user='$id'");
 
     $data = mysql_fetch_array($query);
 ?>
@@ -134,7 +131,7 @@
                                             <label>Position</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p><?php echo $data['name']; ?></p>
+                                            <p><?php echo $data['position']; ?></p>
                                         </div>
                                     </div>
 
@@ -153,15 +150,6 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <p><?php echo $data['address']; ?></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-2">
-                                            <label>Salary</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>Rp <?php echo $data['salary']; ?></p>
                                         </div>
                                     </div>
 

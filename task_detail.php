@@ -27,6 +27,7 @@
     include ("connect.php");
 
     $id = $_GET['id_task'];
+    $id_project = $_GET['id_project'];
 
     $query_task = mysql_query("SELECT t.*,c.*,u.fullname
         FROM task_project t
@@ -61,67 +62,60 @@
                         <div class="panel-body">
                             <div class="row">
                                 <?php while($task = mysql_fetch_array($query_task)): ?>
-                                    <?php
-                                        // var_dump($task);
-                                        // exit();
-                                     ?>
                                 <div class="col-lg-12">
-
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>Task Name</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo $task['task_name']; ?></p>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Task Name</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>Assign</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo $task['fullname']; ?></p>
-                                            </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $task['task_name']; ?></p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>Description</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo $task['description']; ?></p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Assign</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>Start Task</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo date('d-m-Y',strtotime($task['start_task'])); ?></p>
-                                            </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $task['fullname']; ?></p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>End Task</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo date('d-m-Y',strtotime($task['end_task'])); ?></p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Description</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label>Status</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p>: <?php echo $task['status']; ?></p>
-                                            </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $task['description']; ?></p>
                                         </div>
-                                        <a href="project_detail.php?id=<?php echo $task['id_project']; ?>"><button class="btn btn-default">Back</button></a>
-                                        <a href="task_edit.php?id=<?php echo $task['id_task']; ?>"><button class="btn btn-primary">Update</button></a>
-                                        <a href="task_delete.php?id_task=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Start Task</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo date('d-m-Y',strtotime($task['start_task'])); ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>End Task</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo date('d-m-Y',strtotime($task['end_task'])); ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Status</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $task['status']; ?></p>
+                                        </div>
+                                    </div>
+                                    <a href="project_detail.php?id=<?php echo $id_project; ?>"><button class="btn btn-default">Back</button></a>
+                                    <a href="task_edit.php?id=<?php echo $task['id_task']; ?>"><button class="btn btn-primary">Update</button></a>
+                                    <a href="task_delete.php?id_task=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
-                                    <?php endwhile ?>
-
-
+                                <?php endwhile ?>
                             </div>
                         </div>
                     </div>

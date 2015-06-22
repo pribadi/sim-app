@@ -30,9 +30,7 @@
 
     mysql_select_db("sim");
 
-    $query = mysql_query("SELECT u.*, p.name
-                        FROM user u
-                        LEFT JOIN position p ON u.id_position = p.id_position");
+    $query = mysql_query("SELECT * FROM user");
 ?>
 
 <body>
@@ -53,9 +51,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            List User
-                        </div>
+                        <div class="panel-heading"><a href="user_create.php"><button class="btn btn-primary">Add</button></a></div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -81,7 +77,7 @@
                                                 <td><?php echo $data['email']; ?></td>
                                                 <td><?php echo $data['date_birth']; ?></td>
                                                 <td><?php echo $data['sex']; ?></td>
-                                                <td><?php echo $data['name']; ?></td>
+                                                <td><?php echo $data['position']; ?></td>
                                             </tr>
                                         <?php endwhile ?>
                                     </tbody>

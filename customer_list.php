@@ -51,7 +51,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">List Customer</div>
+                                    
+                        <div class="panel-heading"><a href="customer_create.php"><button class="btn btn-primary">Add</button></a></div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -75,14 +76,11 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 

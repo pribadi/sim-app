@@ -29,7 +29,7 @@
     include("connect.php");
 
     mysql_select_db("sim");
-    $query = mysql_query("SELECT * FROM project_position");
+    $query = mysql_query("SELECT * FROM status_project");
 ?>
 
 <body>
@@ -43,7 +43,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Project Position</h1>
+                    <h1 class="page-header"> Project Status</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -51,7 +51,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            List Project Position
+                            List Project Status
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -60,8 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th width="10%">No</th>
-                                            <th width="35%">Name</th>
-                                            <th width="35%">Presentase</th>
+                                            <th width="35%">Status Name</th>
                                             <th width="20%">Action</th>
                                         </tr>
                                     </thead>
@@ -70,11 +69,10 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><?php echo $data['name']; ?></td>
-                                                <td><?php echo $data['presentase']; ?></td>
+                                                <td><?php echo $data['name_status_project']; ?></td>
                                                 <td>
-                                                    <a href="propos_edit.php?id=<?php echo $data['id_propos']; ?>"><i class="fa fa-edit"></i> Update</a> |
-                                                    <a href="propos_delete.php?id=<?php echo $data['id_propos']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="prostat_edit.php?id=<?php echo $data['id_status_project']; ?>"><i class="fa fa-edit"></i> Update</a> |
+                                                    <a href="prostat_delete.php?id=<?php echo $data['id_status_project']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                             </tr>
                                         <?php endwhile ?>
