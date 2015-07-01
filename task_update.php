@@ -2,7 +2,8 @@
     include("connect.php");
 
     $id = $_POST['id_task'];
-
+    $id_project = $_POST['id_project'];
+    
     $task_name = $_POST['task_name'];
     $description = $_POST['description'];
     $start_task = $_POST['start_task'];
@@ -14,7 +15,7 @@
 
     if ($query) {
         echo "<script>window.alert('Task Project Successfully Updated');</script>";
-        echo "<script>window.location = 'task_detail.php?id_task=$id';</script>";
+        echo "<script>window.location = 'task_detail.php?id_task=$id&id_project=$id_project';</script>";
         // header('Location:list_position.php?message=success');
     }
 

@@ -115,6 +115,10 @@
                                                 <option value="Waiting">Waiting</option>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Document</label>
+                                            <input type="file" name="doc">
+                                        </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>
                                     </form>

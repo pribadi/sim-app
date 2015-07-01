@@ -2,14 +2,11 @@
 
     include("connect.php");
 
-    // var_dump($_POST);
-    // exit();
-
     $id_project = $_POST['id_project'];
     $id_user = $_POST['id_user'];
-    $id_propos = $_POST['id_propos'];
+    $project_position = $_POST['project_position'];
 
-    $query = "INSERT INTO crew_project (id_project,id_user,id_propos) VALUES ('$id_project','$id_user','$id_propos')";
+    $query = "INSERT INTO crew_project (id_project,id_user,project_position) VALUES ('$id_project','$id_user','$project_position')";
 
     $result = mysql_query($query);
 

@@ -11,7 +11,7 @@
 
 
     <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown">
+<!--         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -37,7 +37,7 @@
             </ul>
 
         </li>
-
+ -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -61,7 +61,7 @@
                 <li class="divider"></li>
                 <li>
                     <a class="text-center" href="#">
-                        <strong>See All Tasks</strong>
+                        <strong>See All Projects</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
@@ -77,51 +77,31 @@
                 <li>
                     <a href="#">
                         <div>
-                            <i class="fa fa-comment fa-fw"></i> New Comment
+                            <i class="fa fa-comment fa-fw"></i> Task 3
                             <span class="pull-right text-muted small">4 minutes ago</span>
                         </div>
                     </a>
                 </li>
-                <li class="divider"></li>
                 <li>
                     <a href="#">
                         <div>
-                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                            <span class="pull-right text-muted small">12 minutes ago</span>
+                            <i class="fa fa-comment fa-fw"></i> Task 2
+                            <span class="pull-right text-muted small">10 minutes ago</span>
                         </div>
                     </a>
                 </li>
-                <li class="divider"></li>
                 <li>
                     <a href="#">
                         <div>
-                            <i class="fa fa-envelope fa-fw"></i> Message Sent
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-tasks fa-fw"></i> New Task
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                            <span class="pull-right text-muted small">4 minutes ago</span>
+                            <i class="fa fa-comment fa-fw"></i> Task 1
+                            <span class="pull-right text-muted small">20 minutes ago</span>
                         </div>
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li>
                     <a class="text-center" href="#">
-                        <strong>See All Alerts</strong>
+                        <strong>See All Tasks</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </li>
@@ -134,13 +114,10 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
+                <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li> -->
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
+                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
             </ul>
 
         </li>
@@ -174,39 +151,6 @@
                         <li>
                             <a href="user_list.php"><i class="fa fa-users fa-fw"></i> User</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Position <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="propos_create.php"> Create Project Position</a>
-                                </li>
-                                <li>
-                                    <a href="propos_list.php"> List Project Positions</a>
-                                </li>
-                            </ul>   
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Status <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="prostat_create.php"> Create Project Status </a>
-                                </li>
-                                <li>
-                                    <a href="prostat_list.php"> List Project Status</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="prostat_create.php"> Create Project Status </a>
-                                </li>
-                                <li>
-                                    <a href="prostat_list.php"> List Project Status</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -216,28 +160,15 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="project_create.php"> Test 1</a>
+                            <a href="report_member.php"> Project Member</a>
                         </li>
                         <li>
-                            <a href="project_create.php"> Test 1</a>
+                            <a href="report_performance.php"> Project Performance</a>
                         </li>
                         <li>
-                            <a href="project_create.php"> Test 1</a>
+                            <a href="report_technology_platform.php"> Project Technology Platform</a>
                         </li>
                     </ul>
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="blank.html">Blank Page</a>
-                        </li>
-                        <li>
-                            <a href="login.html">Login Page</a>
-                        </li>
-                    </ul>
-
                 </li>
             </ul>
         </div>

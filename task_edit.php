@@ -27,6 +27,7 @@
 include ("connect.php");
 
 $id = $_GET['id'];
+$id_project = $_GET['id_project'];
 
 $crew_query = mysql_query("SELECT c.*,u.fullname
         FROM crew_project c
@@ -72,6 +73,7 @@ $query_task = mysql_query("SELECT t.*,c.*,u.fullname
 
                                     <form role="form" action="task_update.php" method="POST">
                                         <input type="hidden" name="id_task" value="<?php echo $task['id_task']; ?>">
+                                        <input type="hidden" name="id_project" value="<?php echo $id_project['id_project']; ?>">
                                         <div class="form-group">
                                             <label>Task Name</label>
                                             <input type="text" name="task_name" class="form-control" value="<?php echo $task['task_name']; ?>">

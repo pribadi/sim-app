@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <a href="project_detail.php?id=<?php echo $id_project; ?>"><button class="btn btn-default">Back</button></a>
-                                    <a href="task_edit.php?id=<?php echo $task['id_task']; ?>"><button class="btn btn-primary">Update</button></a>
+                                    <a href="task_edit.php?id=<?php echo $task['id_task']; ?>&id_project=<?php echo $id_project; ?>"><button class="btn btn-primary">Update</button></a>
                                     <a href="task_delete.php?id_task=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
                                 <?php endwhile ?>
