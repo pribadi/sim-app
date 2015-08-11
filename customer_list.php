@@ -20,8 +20,8 @@
 
     <link href="css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
 
 </head>
 
@@ -70,7 +70,7 @@
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td><a href="customer_detail.php?id=<?php echo $data['id_customer']; ?>"><?php echo $data['customer_name']; ?></a></td>
-                                                <td><?php echo $data['phone']; ?></td>
+                                                <td><?php echo $data['customer_phone']; ?></td>
                                             </tr>
                                         <?php endwhile ?>
                                     </tbody>

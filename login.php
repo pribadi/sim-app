@@ -1,3 +1,23 @@
+<?php 
+// include_once "connect.php";
+// session_start(1);
+// if(!empty($_SESSION['id_user'])) {
+//     header("Location: index.php");
+// }
+
+// if($_POST) {
+//     $username = $_POST['email'];
+//     $password = md5($_POST['password']);
+//     mysql_select_db("sim");
+//     $query = mysql_query("SELECT * FROM user WHERE email = '{$username}' AND password = '{$password}'");
+//     $data = mysql_fetch_assoc($query);
+//     // create session
+//     $_SESSION['id_user'] = $data['id_user'];
+//     $_SESSION['fullname'] = $data['fullname'];
+//     $_SESSION['position'] = strtolower($data['position']);
+//     header("Location: index.php");
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +62,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" method="post" action="">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -50,13 +70,8 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>

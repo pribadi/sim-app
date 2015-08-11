@@ -67,7 +67,7 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p><?php echo $data['phone']; ?></p>
+                                            <p><?php echo $data['customer_phone']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">

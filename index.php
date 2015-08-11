@@ -1,3 +1,10 @@
+<?php 
+// session_start(1);
+// if(!$_SESSION['id_user']) {
+//     header("Location: login.php");
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -126,7 +133,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 

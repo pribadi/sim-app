@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <a href="user_remove.php?id=<?php echo $data['id_user']; ?>"><button class="btn btn-danger">Yes</button></a>
-                                    <a href="user_detail.php?id=<?php echo $data['id_user']; ?>"><input type="button" class="btn btn-default" value="No"></a>
+                                    <a href="user_list.php"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>

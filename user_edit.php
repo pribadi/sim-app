@@ -27,7 +27,12 @@
 
     $id = $_GET['id'];
 
-    $query = mysql_query("SELECT * FROM user WHERE id_user='$id'");
+    $position_query = mysql_query("SELECT * FROM position");
+    $query = mysql_query("SELECT u.*, p.position_name
+                        FROM user u
+                        LEFT JOIN position p ON u.id_position = p.id_position
+                        WHERE id_user=$id");
+
     $data = mysql_fetch_array($query);
 
 ?>
@@ -59,10 +64,7 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="user_update.php" method="POST">
                                         <input type="hidden" name="id_user" value="<?php echo $id; ?>">
-                                        <div class="form-group">
-                                            <label>Employee Number</label>
-                                            <input type="text" name="employee_number" class="form-control" value="<?php echo $data['employee_number'] ?>">
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label>Fullname</label>
                                             <input type="text" name="fullname" class="form-control" value="<?php echo $data['fullname'] ?>">
@@ -72,59 +74,21 @@
                                             <input type="email" name="email" class="form-control" value="<?php echo $data['email'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label>Place Birth</label>
-                                            <input type="text" name="place" class="form-control" value="<?php echo $data['place'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Date Birth</label>
-                                            <input type="date" name="date_birth" class="form-control" value="<?php echo $data['date_birth'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Marital Status</label>
-                                            <select name="status" class="form-control">
-                                                <option <?php if($data['sex'] == 'Married') echo "selected"; ?> value="Married">Married</option>
-                                                <option <?php if($data['sex'] == 'Not Married') echo "selected"; ?> value="Not Married">Not Married</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Sex</label>
-                                            <select name="sex" class="form-control">
-                                                <option <?php if($data['sex'] == 'Male') echo "selected"; ?> value="Male">Male</option>
-                                                <option <?php if($data['sex'] == 'Female') echo "selected"; ?> value="Female">Female</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Religion</label>
-                                            <select name="religion" class="form-control">
-                                                <option <?php if($data['religion'] == 'Budha') echo "selected"; ?> value="Budha">Budha</option>
-                                                <option <?php if($data['religion'] == 'Hindu') echo "selected"; ?> value="Hindu">Hindu</option>
-                                                <option <?php if($data['religion'] == 'Islam') echo "selected"; ?> value="Islam">Islam</option>
-                                                <option <?php if($data['religion'] == 'Katolik') echo "selected"; ?> value="Katolik">Katolik</option>
-                                                <option <?php if($data['religion'] == 'Konghucu') echo "selected"; ?> value="Konghucu">Konghucu</option>
-                                                <option <?php if($data['religion'] == 'Kristen Protestan') echo "selected"; ?> value="Kristen Protestan">Kristen Protestan</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Position</label>
-                                            <select name="position" class="form-control">
-                                                <option <?php if($data['position'] == 'CEO') echo "selected"; ?> value="CEO">CEO</option>
-                                                <option <?php if($data['position'] == 'CIO') echo "selected"; ?> value="CIO">CIO</option>
-                                                <option <?php if($data['position'] == 'COO') echo "selected"; ?> value="COO">COO</option>
-                                                <option <?php if($data['position'] == 'Finance') echo "selected"; ?> value="Finance">Finance</option>
-                                                <option <?php if($data['position'] == 'Project Manager') echo "selected"; ?> value="Project Manager">Project Manager</option>
-                                                <option <?php if($data['position'] == 'Project Member') echo "selected"; ?> value="Project Member">Project Member</option>
+                                            <select name="id_position" class="form-control">
+                                                <?php while($position = mysql_fetch_array($position_query)): ?>
+                                                    <?php $selected = ""; ?>
+                                                    <?php if($data['position_name'] == $position['position_name']) $selected = "selected"; ?>
+                                                    <option value="<?php echo $position['id_position'] ?>" <?php echo $selected;  ?>><?php echo $position['position_name'] ?></option>
+                                                <?php endwhile; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
                                             <input name="phone" class="form-control" value="<?php echo $data['phone'] ?>">
                                         </div>
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea name="address" class="form-control" rows="3"><?php echo $data['address'] ?></textarea>
-                                        </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                        <a href="user_list.php"><input type="button" class="btn btn-default" value="Back"></a>
                                     </form>
                                 </div>
                             </div>

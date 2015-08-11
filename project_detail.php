@@ -91,7 +91,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Detail Project
+                            Project Information
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -260,7 +260,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Line Chart Project
+                            Project Timeline
                         </div>
 
                         <div class="panel-body">
@@ -351,7 +351,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Task Project</div>
+                        <div class="panel-heading">Project Tasklist</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">

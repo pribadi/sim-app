@@ -1,3 +1,4 @@
+<?php //session_start(1); ?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="<span class="navbar-"></span>collapse">
@@ -11,33 +12,6 @@
 
 
     <ul class="nav navbar-top-links navbar-right">
-<!--         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-messages">
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                <em>Yesterday</em>
-                            </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>Read All Messages</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
-
-        </li>
- -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -111,13 +85,13 @@
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <?php //$_SESSION['fullname'] ?> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li> -->
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
             </ul>
 
         </li>
@@ -142,19 +116,32 @@
                 <li>
                     <a class="active" href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
+                <?php //if($_SESSION['position'] == 'project manager' || $_SESSION['position'] == 'admin'): ?>
+                    <li>
+                        <a href="#"><i class="fa fa-database fa-fw"></i> Master Data<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="customer_list.php"><i class="fa fa-suitcase fa-fw"></i> Customer</a>
+                            </li>
+                            <li>
+                                <a href="position_list.php"><i class="fa fa-tags fa-fw"></i> Position</a>
+                            </li>
+                            <li>
+                                <a href="propos_list.php"><i class="fa fa-tag fa-fw"></i> Project Position</a>
+                            </li>
+                            <li>
+                                <a href="roles_list.php"><i class="fa fa-ban fa-fw"></i> Roles</a>
+                            </li>
+                            <?php //if($_SESSION['position'] == 'admin'): ?>
+                                <li>
+                                    <a href="user_list.php"><i class="fa fa-users fa-fw"></i> User</a>
+                                </li>
+                            <?php //endif ?>
+                        </ul>
+                    </li>
+                <?php //endif; ?>
                 <li>
-                    <a href="#"><i class="fa fa-database fa-fw"></i> Master Data<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="customer_list.php"><i class="fa fa-suitcase fa-fw"></i> Customer</a>
-                        </li>
-                        <li>
-                            <a href="user_list.php"><i class="fa fa-users fa-fw"></i> User</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="project_list.php"><i class="fa fa-bar-chart-o fa-fw"></i> Project</a>
+                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Project</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>

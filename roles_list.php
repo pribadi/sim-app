@@ -20,8 +20,8 @@
 
     <link href="css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!-- <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
 
 </head>
 
@@ -29,10 +29,9 @@
     include("connect.php");
 
     mysql_select_db("sim");
-
-    $query = mysql_query("SELECT u.*, p.position_name
-                    FROM user u
-                    LEFT JOIN position p ON u.id_position = p.id_position");
+    $query = mysql_query("SELECT r.*, p.position_name
+    					FROM roles r
+    					LEFT JOIN position p ON r.id_position = p.id_position");
 ?>
 
 <body>
@@ -46,14 +45,15 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> User</h1>
+                    <h1 class="page-header">Roles</h1>
                 </div>
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><a href="user_create.php"><button class="btn btn-primary">Add</button></a></div>
+                                    
+                        <div class="panel-heading"><a href="roles_create.php"><button class="btn btn-primary">Add</button></a></div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -61,10 +61,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
                                             <th>Position</th>
-                                            <th>Phone</th>
+                                            <th>URI</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -73,30 +71,23 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><a href="user_detail.php?id=<?php echo $data['id_user']; ?>"><?php echo $data['fullname']; ?></a></td>
-                                                <td><?php echo $data['email']; ?></td>
                                                 <td><?php echo $data['position_name']; ?></td>
-                                                <td><?php echo $data['phone']; ?></td>
+                                                <td><?php echo $data['uri']; ?></td>
                                                 <td>
-                                                    <a href="user_edit.php?id=<?php echo $data['id_user']; ?>"><i class="fa fa-edit"></i> Edit</a> |
-                                                    <a href="user_delete.php?id=<?php echo $data['id_user']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="roles_edit.php?id=<?php echo $data['id_roles']; ?>"><i class="fa fa-edit"></i> Edit</a> |
+                                                    <a href="roles_delete.php?id=<?php echo $data['id_roles']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                             </tr>
                                         <?php endwhile ?>
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
