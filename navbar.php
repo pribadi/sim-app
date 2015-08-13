@@ -157,6 +157,15 @@
                         </li>
                     </ul>
                 </li>
+                <!-- <li>
+                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Member</a>
+                </li>
+                <li>
+                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Performance</a>
+                </li>
+                <li>
+                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Technology Platform</a>
+                </li> -->
             </ul>
         </div>
 
