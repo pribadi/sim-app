@@ -7,12 +7,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">Project Management</a>
+
+        <a class="navbar-brand" href="index.php"><img src="brand.png" alt="" height="30" width="30"> Project Management</a>
     </div>
 
 
     <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown">
+        <!-- <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
@@ -41,7 +42,7 @@
                 </li>
             </ul>
 
-        </li>
+        </li> -->
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -147,7 +148,7 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="report_member.php"> Project Member</a>
+                            <a href="report_participant.php"> Project Participant</a>
                         </li>
                         <li>
                             <a href="report_performance.php"> Project Performance</a>
@@ -157,15 +158,6 @@
                         </li>
                     </ul>
                 </li>
-                <!-- <li>
-                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Member</a>
-                </li>
-                <li>
-                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Performance</a>
-                </li>
-                <li>
-                    <a href="project_list.php"><i class="fa fa-folder fa-fw"></i> Report Project Technology Platform</a>
-                </li> -->
             </ul>
         </div>
 

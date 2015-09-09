@@ -30,8 +30,8 @@
     $id_project = $_GET['id_project'];
 
     $query_task = mysql_query("SELECT t.*,c.*,u.fullname
-        FROM task_project t
-        LEFT JOIN crew_project c ON t.id_crew = c.id_crew
+        FROM project_task t
+        LEFT JOIN project_participant c ON t.id_participant = c.id_participant
         LEFT JOIN user u ON c.id_user = u.id_user
         WHERE t.id_task = $id
         ");
@@ -65,14 +65,6 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-lg-2">
-                                            <label>Task Name</label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <p>: <?php echo $task['task_name']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2">
                                             <label>Assign</label>
                                         </div>
                                         <div class="col-lg-6">
@@ -81,10 +73,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-2">
+                                            <label>Task Name</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $task['task_name']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
                                             <label>Description</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <p>: <?php echo $task['description']; ?></p>
+                                            <p>: <?php echo $task['task_description']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -116,6 +116,19 @@
                                     <a href="task_delete.php?id_task=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
                                 <?php endwhile ?>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form role="form" action="task_add.php" method="POST">
+                                        <div class="form-group">
+                                            <label>Comment</label>
+                                            <textarea name="comment" class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <button style="float: right;" type="submit" class="btn btn-primary">Post</button>
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -27,8 +27,6 @@
 
     $customer_query = mysql_query("SELECT * FROM customer");
 
-    $status_query = mysql_query("SELECT * FROM status_project");
-
     // var_dump($status_query);
     // exit();
 ?>
@@ -59,22 +57,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form role="form" action="project_add.php" method="POST">
-                                        <div class="form-group">
-                                            <label>Project Name</label>
-                                            <input type="text" name="project_name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                            <select name="category" class="form-control">
-                                                <option>...</option>
-                                                <option value="Mobile">Mobile</option>
-                                                <option value="Web">Web</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Technology Platform</label>
-                                            <input type="text" name="platform" class="form-control">
-                                        </div>
+
+                                        <input type="hidden" name="id_user" class="form-control">
+                                        
                                         <div class="form-group">
                                             <label>Customer</label>
                                             <select name="id_customer" class="form-control">
@@ -84,6 +69,20 @@
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Project Name</label>
+                                            <input type="text" name="project_name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Technology Platform</label>
+                                            <select name="platform" class="form-control">
+                                                <option>...</option>
+                                                <option value="Desktop">Desktop</option>
+                                                <option value="Mobile">Mobile</option>
+                                                <option value="Web">Web</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label>Start Project</label>
                                             <input type="date" name="start" class="form-control">
@@ -91,10 +90,6 @@
                                         <div class="form-group">
                                             <label>End Project</label>
                                             <input type="date" name="end" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input type="text" name="value_project" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>URL Demo</label>
@@ -114,10 +109,6 @@
                                                 <option value="Supporting">Supporting</option>
                                                 <option value="Waiting">Waiting</option>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Document</label>
-                                            <input type="file" name="doc">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <button type="reset" class="btn btn-default">Cancel</button>

@@ -53,6 +53,24 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="<span class="navbar-"></span>collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.php"><img src="brand.png" alt="" height="30" width="30"> Project Management</a>
+        </div>
+
+
+        <ul class="nav navbar-top-links navbar-right">
+            
+        </ul>
+    </nav>
+
 
     <div class="container">
         <div class="row">

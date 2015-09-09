@@ -16,7 +16,8 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link href="css/plugins/morris.css" rel="stylesheet">
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
+    <link href="css/plugins/dataTables.bootstrap.css" rel="stylesheet">
     
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -24,6 +25,14 @@
     <script src="js/jquery-1.11.0.js"></script>
     <script src="highcharts/js/highcharts.js"></script>
 </head>
+
+<?php 
+    include ("connect.php");
+
+    mysql_select_db("sim");
+    $query = mysql_query("SELECT * FROM user");
+    
+?>
 
 <body>
 
@@ -37,7 +46,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
-                    <!-- <h1 class="page-header">Test Grafik</h1> -->
+                    <a href="#"><button class="btn btn-primary">Charts</button></a>
+                    <a href="report_participant_list.php"><button class="btn btn-default">List</button></a>
+
                 </div>
             </div>
 
@@ -45,7 +56,6 @@
                 <div id="container" style="width:100%; height:400px;"></div>
                 <!-- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
             </div>
-
         </div>
 
 
@@ -55,67 +65,43 @@
         $(function () {
             $('#container').highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'bar'
                 },
                 title: {
-                    text: 'Report Project Member'
+                    text: 'Report Project Participant'
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com'
+                    text: 'PT. Sagara Xinix Solusitama'
                 },
                 xAxis: {
-                    categories: [
-                        'Janu',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
+                    categories: ['Nama 1', 'Nama 2', 'Nama 3', 'Nama 4', 'Nama 5']
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Rainfall (mm)'
+                        text: 'Total fruit consumption'
                     }
                 },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
+                legend: {
+                    reversed: true
                 },
                 plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
+                    series: {
+                        stacking: 'normal'
                     }
                 },
                 series: [{
-                    name: 'Tokyo',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-        
+                    name: 'Project Manager',
+                    data: [5, 3, 4, 7, 2]
                 }, {
-                    name: 'New York',
-                    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-        
+                    name: 'Tester',
+                    data: [2, 2, 3, 2, 1]
                 }, {
-                    name: 'London',
-                    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-        
+                    name: 'Developer',
+                    data: [2, 2, 3, 2, 1]
                 }, {
-                    name: 'Berlin',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-        
+                    name: 'Documentation',
+                    data: [3, 4, 4, 2, 5]
                 }]
             });
         });

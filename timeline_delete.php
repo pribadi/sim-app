@@ -25,9 +25,9 @@
 <?php
     include ("connect.php");
 
-    $id = $_GET['id_task'];
+    $id = $_GET['id'];
 
-    $query = mysql_query("SELECT * FROM project_task WHERE id_task='$id'") or die(mysql_error());
+    $query = mysql_query("SELECT * FROM project_timeline WHERE id_timeline='$id'") or die(mysql_error());
     $data = mysql_fetch_array($query);
  ?>
 
@@ -42,7 +42,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project / Task</h1>
+                    <h1 class="page-header">Project / Timeline</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -56,8 +56,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a href="task_remove.php?id_task=<?php echo $id . '&id_project=' . $data['id_project']; ?>"><button class="btn btn-danger">Yes</button></a>
-                                    <a href="task_detail.php?id_task=<?php echo $id; ?>&id_project=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="No"></a>
+                                    <a href="timeline_remove.php?id_timeline=<?php echo $id . '&id_project=' . $data['id_project']; ?>"><button class="btn btn-danger">Yes</button></a>
+                                    <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><input type="button" class="btn btn-default" value="No"></a>
                                 </div>
                             </div>
                         </div>

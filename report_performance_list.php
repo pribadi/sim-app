@@ -30,9 +30,7 @@
 
     mysql_select_db("sim");
 
-    $query = mysql_query("SELECT u.*, p.position_name
-                    FROM user u
-                    LEFT JOIN position p ON u.id_position = p.id_position");
+    $query = mysql_query("SELECT * FROM project");
 ?>
 
 <body>
@@ -46,14 +44,18 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> User</h1>
+                    <h2 class="page-header"> Report Project Performance</h2>
                 </div>
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><a href="user_create.php"><button class="btn btn-primary">Add</button></a></div>
+                        <div class="panel-heading">
+                            <a href="report_performance.php"><button class="btn btn-default">Charts</button></a>
+                            <a href="#"><button class="btn btn-primary">List</button></a>
+                            <a href="#" style="float: right"><button class="btn btn-primary">Print</button></a>
+                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -61,11 +63,12 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>Position</th>
-                                            <th>Phone</th>
-                                            <th>Action</th>
+                                            <th>Project Name</th>
+                                            <th>Start Project</th>
+                                            <th>End Project</th>
+                                            <th>Task Pending</th>
+                                            <th>Task Over Due</th>
+                                            <th>Task Done</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,14 +76,12 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><?php echo $data['fullname']; ?></td>
-                                                <td><?php echo $data['email']; ?></td>
-                                                <td><?php echo $data['position_name']; ?></td>
-                                                <td><?php echo $data['phone']; ?></td>
-                                                <td>
-                                                    <a href="user_edit.php?id=<?php echo $data['id_user']; ?>"><i class="fa fa-edit"></i> Edit</a> |
-                                                    <a href="user_delete.php?id=<?php echo $data['id_user']; ?>"><i class="fa fa-times"></i> Delete</a>
-                                                </td>
+                                                <td><?php echo $data['project_name']; ?></td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                                <td>10</td>
+                                                <td>10</td>
                                             </tr>
                                         <?php endwhile ?>
                                     </tbody>

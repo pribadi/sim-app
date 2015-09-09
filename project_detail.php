@@ -37,11 +37,10 @@
     $data = mysql_fetch_array($query);
 
     // progress chart
-    $total_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id");
+    $total_task = mysql_query("SELECT * FROM project_task WHERE id_project = $id");
     $total = mysql_num_rows($total_task);
 
-
-    $done_task = mysql_query("SELECT * FROM task_project WHERE id_project = $id AND status = 'done'");
+    $done_task = mysql_query("SELECT * FROM project_task WHERE id_project = $id AND status = 'done'");
     $done = mysql_num_rows($done_task);
 
     if ($done == 0) {
@@ -98,26 +97,10 @@
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label>Project Name</label>
+                                            <label>Project Manager</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p>: <?php echo $data['project_name']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label>Category</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p>: <?php echo $data['category']; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label>Technology Platform</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p>: <?php echo $data['platform']; ?></p>
+                                            <p>: <?php echo $data['id_user']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -126,6 +109,22 @@
                                         </div>
                                         <div class="col-lg-8">
                                             <p>: <?php echo $data['customer_name']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label>Project Name</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p>: <?php echo $data['project_name']; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label>Technology Platform</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p>: <?php echo $data['platform']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -142,14 +141,6 @@
                                         </div>
                                         <div class="col-lg-8">
                                             <p>: <?php echo date('d-m-Y',strtotime($data['end'])); ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label>Value Project</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <p>: Rp <?php echo number_format($data['value_project'],0,',','.'); ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -180,17 +171,19 @@
 
                                 </div>
                                 <?php
-                                    $query_propos = mysql_query("SELECT c.*, p.id_project, u.fullname
-                                        FROM crew_project c
-                                        LEFT JOIN project p ON c.id_project = p.id_project
+
+                                    $query_propos = mysql_query("SELECT c.*, p.id_project, u.fullname, pp.propos_name
+                                        FROM project_participant c
                                         LEFT JOIN user u ON c.id_user = u.id_user
+                                        LEFT JOIN project p ON c.id_project = p.id_project
+                                        LEFT JOIN project_position pp ON c.id_propos = pp.id_propos
                                         WHERE p.id_project = $id");
                                  ?>
                                 <div class="col-lg-6">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Crew Name</th>
+                                                <th>Participant Name</th>
                                                 <th>Project Position</th>
                                                 <th>Action</th>
                                             </tr>
@@ -199,25 +192,27 @@
                                             <?php while($cp = mysql_fetch_array($query_propos)): ?>
                                             <tr>
                                                 <td><?php echo $cp['fullname']; ?></td>
-                                                <td><?php echo $cp['project_position']; ?></td>
+                                                <td><?php echo $cp['propos_name']; ?></td>
                                                 <td>
-                                                    <a href="crew_delete.php?id=<?php echo $cp['id_crew']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="participant_delete.php?id=<?php echo $cp['id_participant']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                             </tr>
                                             <?php endwhile ?>
                                         </tbody>
                                     </table>
                                     <?php
-                                        $user_query = mysql_query("SELECT * FROM user");
+                                        $user_query = mysql_query("SELECT * FROM user WHERE id_position = 1");
+
+                                        $propos_query = mysql_query("SELECT * FROM project_position");
                                     ?>
 
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form role="form" action="crew_add.php" method="POST">
+                                            <form role="form" action="participant_add.php" method="POST">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Crew Name</label>
+                                                            <label>Participant Name</label>
                                                             <select name="id_user" class="form-control">
                                                                 <option value="">...</option>
                                                                 <?php while($user = mysql_fetch_array($user_query)): ?>
@@ -230,13 +225,11 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Project Position</label>
-                                                            <select name="project_position" class="form-control">
-                                                                <option>...</option>
-                                                                <option value="Developer">Developer</option>
-                                                                <option value="Documentation">Documentation</option>
-                                                                <option value="Finance">Finance</option>
-                                                                <option value="Project Manager">Project Manager</option>
-                                                                <option value="Supporting">Supporting</option>
+                                                            <select name="id_propos" class="form-control">
+                                                                <option value="">...</option>
+                                                                <?php while($propos = mysql_fetch_array($propos_query)): ?>
+                                                                    <option value="<?php echo $propos['id_propos'] ?>"><?php echo $propos['propos_name'] ?></option>
+                                                                <?php endwhile; ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -256,7 +249,7 @@
             </div>
 
             <!-- Line Chart Project -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -345,6 +338,52 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+            <!-- Timeline Project -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Project Timeline</div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <a href="timeline_create.php?id=<?php echo $_GET['id']; ?>"><button class="btn btn-primary">Add Timeline</button></a><br><br>
+                                <?php
+                                    $query_timeline = mysql_query("SELECT * FROM project_timeline WHERE id_project = $id");
+                                 ?>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Timeline Name</th>
+                                            <th>Start</th>
+                                            <th>End</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=1; ?>
+                                        <?php while($timeline = mysql_fetch_array($query_timeline)): ?>
+                                        <tr>
+                                            <td><?php echo $no++; ?></td>
+                                            <td><a href="timeline_detail.php?id_timeline=<?php echo $timeline['id_timeline'];?>&id_project=<?php echo $id; ?>"><?php echo $timeline['timeline_name']; ?></a></td>
+                                            <td><p><?php echo date('d-m-Y',strtotime($timeline['start_time'])); ?></p></td>
+                                            <td><p><?php echo date('d-m-Y',strtotime($timeline['end_time'])); ?></p></td>
+                                            <td>
+                                                <a href="timeline_edit.php?id=<?php echo $timeline['id_timeline']; ?>&id_project=<?php echo $id; ?>"><i class="fa fa-edit"></i> Edit</a> |
+                                                <a href="timeline_delete.php?id=<?php echo $timeline['id_timeline']; ?>&id_project=<?php echo $id; ?>"><i class="fa fa-times"></i> Delete</a>
+                                            </td>
+                                        </tr>
+                                        <?php endwhile ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Task Project -->
@@ -368,11 +407,12 @@
                                             <th>End Task</th>
                                             <th>Status</th>
                                         </tr>
+
                                     </thead>
                                     <?php
                                         $query_task = mysql_query("SELECT t.*,c.*,u.fullname
-                                            FROM task_project t
-                                            LEFT JOIN crew_project c ON t.id_crew = c.id_crew
+                                            FROM project_task t
+                                            LEFT JOIN project_participant c ON t.id_participant = c.id_participant
                                             LEFT JOIN user u ON c.id_user = u.id_user
                                             WHERE t.id_project = $id
                                             ");

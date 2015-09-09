@@ -40,7 +40,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <center>
+                        <div style="margin-top: 150px;">
+                            <hr>
+                            <h1 style="font-size: 100px;">xinix</h1>
+                            <h1>Project Management</h1>
+                            <hr>
+                        </div>
+                    </center> 
                 </div>
             </div>
 

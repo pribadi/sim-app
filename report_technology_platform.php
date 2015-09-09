@@ -37,6 +37,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
+                    <a href="#"><button class="btn btn-primary">Charts</button></a>
+                    <a href="report_tp_list.php"><button class="btn btn-default">List</button></a>
                 </div>
             </div>
 
@@ -85,25 +87,16 @@
                     name: "Brands",
                     colorByPoint: true,
                     data: [{
-                        name: "Microsoft Internet Explorer",
-                        y: 15
+                        name: "Android",
+                        y: 70
                     }, {
-                        name: "Chrome",
-                        y: 25,
+                        name: "Dekstop",
+                        y: 5,
                         sliced: true,
                         selected: true
                     }, {
-                        name: "Firefox",
-                        y: 10
-                    }, {
-                        name: "Safari",
-                        y: 10
-                    }, {
-                        name: "Opera",
-                        y: 20
-                    }, {
-                        name: "Proprietary or Undetectable",
-                        y: 20
+                        name: "Web Browser",
+                        y: 25
                     }]
                 }]
             });

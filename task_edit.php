@@ -29,14 +29,14 @@ include ("connect.php");
 $id = $_GET['id'];
 $id_project = $_GET['id_project'];
 
-$crew_query = mysql_query("SELECT c.*,u.fullname
-        FROM crew_project c
+$participant_query = mysql_query("SELECT c.*,u.fullname
+        FROM project_participant c
         LEFT JOIN user u ON c.id_user = u.id_user
     ");
 
 $query_task = mysql_query("SELECT t.*,c.*,u.fullname
-        FROM task_project t
-        LEFT JOIN crew_project c ON t.id_crew = c.id_crew
+        FROM project_task t
+        LEFT JOIN project_participant c ON t.id_participant = c.id_participant
         LEFT JOIN user u ON c.id_user = u.id_user
         WHERE t.id_task = $id
     ");
@@ -73,14 +73,14 @@ $query_task = mysql_query("SELECT t.*,c.*,u.fullname
 
                                     <form role="form" action="task_update.php" method="POST">
                                         <input type="hidden" name="id_task" value="<?php echo $task['id_task']; ?>">
-                                        <input type="hidden" name="id_project" value="<?php echo $id_project['id_project']; ?>">
+                                        <input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
                                         <div class="form-group">
                                             <label>Task Name</label>
                                             <input type="text" name="task_name" class="form-control" value="<?php echo $task['task_name']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea name="description" class="form-control" rows="3"><?php echo $task['description']; ?></textarea>
+                                            <textarea name="task_description" class="form-control" rows="3"><?php echo $task['task_description']; ?></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Start Task</label>
@@ -92,11 +92,11 @@ $query_task = mysql_query("SELECT t.*,c.*,u.fullname
                                         </div>
                                         <div class="form-group">
                                             <label>Assign</label>
-                                            <select name="id_crew" class="form-control">
-                                            <?php while($crew = mysql_fetch_array($crew_query)): ?>
+                                            <select name="id_participant" class="form-control">
+                                            <?php while($participant = mysql_fetch_array($participant_query)): ?>
                                                 <?php $selected = ""; ?>
-                                                <?php if($task['id_crew'] == $crew['id_crew']) $selected = "selected"; ?>
-                                                <option value="<?php echo $crew['id_crew']; ?>" <?php echo $selected; ?>><?php echo $crew['fullname']; ?></option>
+                                                <?php if($task['id_participant'] == $participant['id_participant']) $selected = "selected"; ?>
+                                                <option value="<?php echo $participant['id_participant']; ?>" <?php echo $selected; ?>><?php echo $participant['fullname']; ?></option>
                                             <?php endwhile; ?>
                                             </select>
                                         </div>
@@ -109,7 +109,7 @@ $query_task = mysql_query("SELECT t.*,c.*,u.fullname
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="task_detail.php?id_task=<?php echo $id; ?>"><input type="button" class="btn btn-default" value="Back"></a>
+                                        <a href="task_detail.php?id_task=<?php echo $id; ?>&id_project=<?php echo $id_project; ?>"><input type="button" class="btn btn-default" value="Back"></a>
                                     </form>
                                     <?php endwhile ?>
                                 </div>

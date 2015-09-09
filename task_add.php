@@ -2,15 +2,15 @@
 
     include("connect.php");
 
-    $id_project = $_POST['id_project'];
-    $task_name = $_POST['task_name'];
-    $description = $_POST['description'];
-    $start_task = $_POST['start_task'];
-    $end_task = $_POST['end_task'];
-    $id_crew = $_POST['id_crew'];
-    $status = $_POST['status'];
-
-    $query = "INSERT INTO task_project (id_project,task_name,description,start_task,end_task,id_crew,status) VALUES ('$id_project','$task_name','$description','$start_task','$end_task','$id_crew','$status')";
+    $id_project         = $_POST['id_project'];
+    $id_participant     = $_POST['id_participant'];
+    $task_name          = $_POST['task_name'];
+    $task_description   = $_POST['task_description'];
+    $start_task         = $_POST['start_task'];
+    $end_task           = $_POST['end_task'];
+    $status             = $_POST['status'];
+    
+    $query = "INSERT INTO project_task (id_project,id_participant,task_name,task_description,start_task,end_task,status) VALUES ('$id_project','$id_participant','$task_name','$task_description','$start_task','$end_task','$status')";
 
     $result = mysql_query($query);
 

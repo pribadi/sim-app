@@ -3,10 +3,10 @@
     include("connect.php");
 
     $id_project = $_POST['id_project'];
-    $id_user = $_POST['id_user'];
-    $project_position = $_POST['project_position'];
+    $id_user    = $_POST['id_user'];
+    $id_propos  = $_POST['id_propos'];
 
-    $query = "INSERT INTO crew_project (id_project,id_user,project_position) VALUES ('$id_project','$id_user','$project_position')";
+    $query = "INSERT INTO project_participant (id_project,id_user,id_propos) VALUES ('$id_project','$id_user','$id_propos')";
 
     $result = mysql_query($query);
 

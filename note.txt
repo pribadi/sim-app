@@ -4,7 +4,14 @@ navbar.php dikomen
 
 
 
-
+customer			= done
 position 			= done
 roles				= done
 project position 	= done
+user				= done
+
+project
+- user id belom ada karena otomatis di ambil dari session user
+
+project participant = done
+project task 		= done

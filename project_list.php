@@ -61,8 +61,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Name</th>
+                                            <th>Project Manager</th>
                                             <th>Customer</th>
+                                            <th>Project Name</th>
                                             <th>Start Project</th>
                                             <th>End Project</th>
                                             <th>Status</th>
@@ -74,12 +75,14 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><?php echo $data['project_name']; ?></a></td>
+                                                <td><?php echo $data['id_user']; ?></td>
                                                 <td><?php echo $data['customer_name']; ?></td>
+                                                <td><?php echo $data['project_name']; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['start'])); ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['end'])); ?></td>
                                                 <td><?php echo $data['status_project']; ?></td>
                                                 <td>
+                                                    <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-eye"></i> View</a> |
                                                     <a href="project_delete.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                             </tr>

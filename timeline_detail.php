@@ -23,10 +23,14 @@
 </head>
 
 <?php
+
     include ("connect.php");
 
-    $position_query = mysql_query("SELECT * FROM position");
-?>
+    $id = $_GET['id_timeline'];
+    $id_project = $_GET['id_project'];
+
+    $query_timeline = mysql_query("SELECT * FROM project_timeline WHERE id_timeline = $id");
+ ?>
 
 <body>
 
@@ -39,7 +43,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User</h1>
+                    <h1 class="page-header">Project / Timeline</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -48,41 +52,41 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Create User
+                            Detail Timeline
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <?php while($timeline = mysql_fetch_array($query_timeline)): ?>
                                 <div class="col-lg-12">
-                                    <form role="form" action="user_add.php" method="POST">
-                                        <div class="form-group">
-                                            <label>Fullname</label>
-                                            <input type="text" name="fullname" class="form-control">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Timeline Name</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" name="email" class="form-control">
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo $timeline['timeline_name']; ?></p>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Position</label>
-                                            <select name="id_position" class="form-control">
-                                                <option value="">...</option>
-                                                <?php while($position = mysql_fetch_array($position_query)): ?>
-                                                    <option value="<?php echo $position['id_position'] ?>"><?php echo $position['position_name'] ?></option>
-                                                <?php endwhile; ?>
-                                            </select>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>Start Time</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="text" name="phone" class="form-control">
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo date('d-m-Y',strtotime($timeline['start_time'])); ?></p>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" name="password" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <label>End Time</label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                        <a href="user_list.php"><button class="btn btn-default">List</button></a>
-                                    </form>
+                                        <div class="col-lg-6">
+                                            <p>: <?php echo date('d-m-Y',strtotime($timeline['end_time'])); ?></p>
+                                        </div>
+                                    </div>
+                                    <a href="project_detail.php?id=<?php echo $id_project; ?>"><button class="btn btn-default">Back</button></a>
+                                    <a href="timeline_edit.php?id=<?php echo $timeline['id_timeline']; ?>&id_project=<?php echo $id_project; ?>"><button class="btn btn-primary">Update</button></a>
+                                    <a href="timeline_delete.php?id_timeline=<?php echo $id; ?>"><button class="btn btn-danger">Delete</button></a>
                                 </div>
+                                <?php endwhile ?>
                             </div>
                         </div>
                     </div>

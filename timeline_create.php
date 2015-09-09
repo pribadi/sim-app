@@ -54,51 +54,28 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="task_add.php" method="POST">
+                                    <form role="form" action="timeline_add.php" method="POST">
                                         <input type="hidden" name="id_project" value=<?php echo $_GET['id']; ?> class="form-control">
                                         <div class="form-group">
-                                            <label>Task Name</label>
-                                            <input type="text" name="task_name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea name="task_description" class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Start Task</label>
-                                            <input type="date" name="start_task" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>End Task</label>
-                                            <input type="date" name="end_task" class="form-control">
-                                        </div>
-
-                                        <?php
-                                            $query_crew = mysql_query("SELECT c.*, p.*, u.fullname
-                                                FROM project_participant c
-                                                LEFT JOIN project p ON c.id_project = p.id_project
-                                                INNER JOIN user u ON c.id_user = u.id_user
-                                                WHERE p.id_project = $id");
-                                        ?>
-
-                                        <div class="form-group">
-                                            <label>Assign</label>
-                                            <select name="id_participant" class="form-control">
-                                                <option value="">...</option>
-                                                <?php while($crew = mysql_fetch_array($query_crew)): ?>
-                                                    <option value="<?php echo $crew['id_participant'] ?>"><?php echo $crew['fullname'] ?></option>
-                                                <?php endwhile; ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <select name="status" class="form-control">
+                                            <label>Timeline Name</label>
+                                            <select name="timeline_name" class="form-control">
                                                 <option>...</option>
-                                                <option value="close">Close </option>
-                                                <option value="pending">Pending </option>
-                                                <option value="progress">On Progress </option>
-                                                <option value="done">Done </option>
+                                                <option value="User Requirment">User Requirment</option>
+                                                <option value="Application Design">Application Design</option>
+                                                <option value="Installing Server">Installing Server</option>
+                                                <option value="Development">Development</option>
+                                                <option value="Implementation System">Implementation System</option>
+                                                <option value="Testing">Testing</option>
+                                                <option value="Training">Training</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Start Time</label>
+                                            <input type="date" name="start_time" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>End Time</label>
+                                            <input type="date" name="end_time" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save</button>
                                         <a href="project_detail.php?id=<?php echo $id; ?>"><input type="button" class="btn btn-default" value="Back"></a>

@@ -1,17 +1,17 @@
  <?php
     include("connect.php");
 
-    $id = $_POST['id_task'];
-    $id_project = $_POST['id_project'];
+    $id             = $_POST['id_task'];
+    $id_project     = $_POST['id_project'];
     
-    $task_name = $_POST['task_name'];
-    $description = $_POST['description'];
-    $start_task = $_POST['start_task'];
-    $end_task = $_POST['end_task'];
-    $id_crew = $_POST['id_crew'];
-    $status = $_POST['status'];
+    $id_participant     = $_POST['id_participant'];
+    $task_name          = $_POST['task_name'];
+    $task_description   = $_POST['task_description'];
+    $start_task         = $_POST['start_task'];
+    $end_task           = $_POST['end_task'];
+    $status             = $_POST['status'];
 
-    $query = mysql_query("UPDATE task_project SET task_name='$task_name', description='$description', start_task='$start_task', end_task='$end_task', id_crew='$id_crew', status='$status' WHERE id_task='$id'") OR DIE(mysql_error());
+    $query = mysql_query("UPDATE project_task SET id_participant='$id_participant', task_name='$task_name', task_description='$task_description', start_task='$start_task', end_task='$end_task', status='$status' WHERE id_task='$id'") OR DIE(mysql_error());
 
     if ($query) {
         echo "<script>window.alert('Task Project Successfully Updated');</script>";

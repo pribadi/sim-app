@@ -45,7 +45,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
-                    <!-- <h1 class="page-header">Test Grafik</h1> -->
+                    <a href="#"><button class="btn btn-primary">Charts</button></a>
+                    <a href="report_performance_list.php"><button class="btn btn-default">List</button></a>
                 </div>
             </div>
 

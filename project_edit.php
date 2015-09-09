@@ -28,16 +28,12 @@
     $id = $_GET['id'];
 
     $customer_query = mysql_query("SELECT * FROM customer");
-    $statpro_query = mysql_query("SELECT * FROM status_project");
 
     $query = mysql_query("SELECT p.*, c.customer_name
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
-
-    // var_dump($data);
-    // exit();
 ?>
 
 <body>
@@ -67,21 +63,8 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="project_update.php" method="POST">
                                         <input type="hidden" name="id_project" value="<?php echo $id; ?>">
-                                        <div class="form-group">
-                                            <label>Project Name</label>
-                                            <input type="text" name="project_name" class="form-control" value="<?php echo $data['project_name']; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                            <select name="category" class="form-control">
-                                                <option <?php if($data['category'] == 'Mobile') echo "selected"; ?> value="Mobile">Mobile</option>
-                                                <option <?php if($data['category'] == 'Web') echo "selected"; ?> value="Web">Web</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Technology Platform</label>
-                                            <input type="text" name="platform" class="form-control" value="<?php echo $data['platform']; ?>">
-                                        </div>
+                                        <input type="hidden" name="id_user" value="<?php echo $data['id_user'] ?>">
+
                                         <div class="form-group">
                                             <label>Customer</label>
                                             <select name="id_customer" class="form-control">
@@ -92,6 +75,19 @@
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label>Project Name</label>
+                                            <input type="text" name="project_name" class="form-control" value="<?php echo $data['project_name']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Technology Platform</label>
+                                            <select name="platform" class="form-control">
+                                                <option <?php if($data['platform'] == 'Desktop') echo "selected"; ?> value="Desktop">Desktop</option>
+                                                <option <?php if($data['platform'] == 'Mobile') echo "selected"; ?> value="Mobile">Mobile</option>
+                                                <option <?php if($data['platform'] == 'Web') echo "selected"; ?> value="Web">Web</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label>Start Project</label>
                                             <input type="date" name="start" class="form-control" value="<?php echo $data['start']; ?>">
@@ -99,10 +95,6 @@
                                         <div class="form-group">
                                             <label>End Project</label>
                                             <input type="date" name="end" class="form-control" value="<?php echo $data['end']; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Value Project</label>
-                                            <input type="text" name="value_project" class="form-control" value="<?php echo $data['value_project']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>URL Demo</label>
