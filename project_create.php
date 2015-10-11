@@ -1,3 +1,7 @@
+<?php 
+session_start(1);
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +31,7 @@
 
     $customer_query = mysql_query("SELECT * FROM customer");
 
-    // var_dump($status_query);
+    // var_dump($_SESSION['id_user']);
     // exit();
 ?>
 
@@ -58,7 +62,7 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="project_add.php" method="POST">
 
-                                        <input type="hidden" name="id_user" class="form-control">
+                                        <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user']; ?>" class="form-control">
                                         
                                         <div class="form-group">
                                             <label>Customer</label>

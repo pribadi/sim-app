@@ -30,9 +30,10 @@
     $id = $_GET['id'];
 
     // query detail project
-    $query = mysql_query("SELECT p.*, c.customer_name
+    $query = mysql_query("SELECT p.*, c.customer_name, u.fullname
                         FROM project p
                         LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        LEFT JOIN user u ON p.id_user = u.id_user
                         WHERE p.id_project = $id");
     $data = mysql_fetch_array($query);
 
@@ -100,7 +101,7 @@
                                             <label>Project Manager</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <p>: <?php echo $data['id_user']; ?></p>
+                                            <p>: <?php echo $data['fullname']; ?></p>
                                         </div>
                                     </div>
                                     <div class="row">

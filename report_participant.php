@@ -91,7 +91,7 @@
                     }
                 },
                 series: [{
-                    name: 'Project Manager',
+                    name: 'Documentation',
                     data: [5, 3, 4, 7, 2]
                 }, {
                     name: 'Tester',
@@ -100,7 +100,7 @@
                     name: 'Developer',
                     data: [2, 2, 3, 2, 1]
                 }, {
-                    name: 'Documentation',
+                    name: 'Project Manager',
                     data: [3, 4, 4, 2, 5]
                 }]
             });

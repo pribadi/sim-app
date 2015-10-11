@@ -1,3 +1,7 @@
+<?php 
+session_start(1);
+ ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +67,7 @@
                                 <div class="col-lg-12">
                                     <form role="form" action="project_update.php" method="POST">
                                         <input type="hidden" name="id_project" value="<?php echo $id; ?>">
-                                        <input type="hidden" name="id_user" value="<?php echo $data['id_user'] ?>">
+                                        <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user']; ?>">
 
                                         <div class="form-group">
                                             <label>Customer</label>

@@ -30,9 +30,11 @@
 
     mysql_select_db("sim");
 
-    $query = mysql_query("SELECT p.*, c.customer_name
+    $query = mysql_query("SELECT p.*, c.customer_name, u.fullname
                         FROM project p
-                        LEFT JOIN customer c ON p.id_customer = c.id_customer");
+                        LEFT JOIN customer c ON p.id_customer = c.id_customer
+                        LEFT JOIN user u ON p.id_user = u.id_user
+                        ");
 ?>
 
 <body>
@@ -75,15 +77,15 @@
                                         <?php while($data = mysql_fetch_array($query)): ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><?php echo $data['id_user']; ?></td>
+                                                <td><?php echo $data['fullname']; ?></td>
                                                 <td><?php echo $data['customer_name']; ?></td>
                                                 <td><?php echo $data['project_name']; ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['start'])); ?></td>
                                                 <td><?php echo date('d-m-Y',strtotime($data['end'])); ?></td>
                                                 <td><?php echo $data['status_project']; ?></td>
                                                 <td>
-                                                    <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-eye"></i> View</a> |
-                                                    <a href="project_delete.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="project_detail.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-eye"></i></a> |
+                                                    <a href="project_delete.php?id=<?php echo $data['id_project']; ?>"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endwhile ?>

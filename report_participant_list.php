@@ -56,7 +56,7 @@
                         <div class="panel-heading">
                             <a href="report_participant.php"><button class="btn btn-default">Charts</button></a>
                             <a href="#"><button class="btn btn-primary">List</button></a>
-                            <a href="#" style="float: right"><button class="btn btn-primary">Print</button></a>
+                            <a href="print_participant.php" style="float: right" target="blank"><button class="btn btn-primary">Print</button></a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

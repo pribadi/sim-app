@@ -40,7 +40,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project / Task</h1>
+                    <h1 class="page-header">Project / Timeline</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -54,7 +54,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="timeline_add.php" method="POST">
+                                    <form role="form" action="timeline_add.php" id="timeline" method="POST">
                                         <input type="hidden" name="id_project" value=<?php echo $_GET['id']; ?> class="form-control">
                                         <div class="form-group">
                                             <label>Timeline Name</label>
@@ -90,6 +90,24 @@
 
 
     </div>
+    <script type="text/javascript">
+        $(function(){
+            var start = $('input[type="date"][name="start_time"]');
+            var end = $('input[type="date"][name="end_time"]');
+            var form = $('form#timeline');
+            // $(end).on("change", function(e){
+            //     if(start.val() >= end.val()){
+            //         alert("Tanggal Terbit must not be greater than the Tanggal Expired and Don't be Empty");
+            //     }
+            // });
+            $( "form" ).submit(function( event ) {
+              if(start.val() >= end.val()){
+                    alert("Tanggal mulai must not be greater than the Tanggal Expired and Don't be Empty");
+                    return false;
+                }
+            });
+        });
+    </script>
 
 
 

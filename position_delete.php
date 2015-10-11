@@ -1,3 +1,10 @@
+<?php 
+session_start(1);
+if(!$_SESSION['id_user']) {
+    header("Location: login.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

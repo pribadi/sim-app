@@ -1,22 +1,28 @@
 <?php 
-// include_once "connect.php";
-// session_start(1);
-// if(!empty($_SESSION['id_user'])) {
-//     header("Location: index.php");
-// }
+include_once "connect.php";
+session_start(1);
+if(!empty($_SESSION['id_user'])) {
+    header("Location: index.php");
+}
 
-// if($_POST) {
-//     $username = $_POST['email'];
-//     $password = md5($_POST['password']);
-//     mysql_select_db("sim");
-//     $query = mysql_query("SELECT * FROM user WHERE email = '{$username}' AND password = '{$password}'");
-//     $data = mysql_fetch_assoc($query);
-//     // create session
-//     $_SESSION['id_user'] = $data['id_user'];
-//     $_SESSION['fullname'] = $data['fullname'];
-//     $_SESSION['position'] = strtolower($data['position']);
-//     header("Location: index.php");
-// }
+if($_POST) {
+    $username = $_POST['email'];
+    $password = md5($_POST['password']);
+    mysql_select_db("sim");
+    $query = mysql_query("SELECT * FROM user WHERE email = '{$username}' AND password = '{$password}'");
+    $data = mysql_fetch_assoc($query);
+    // create session
+    $_SESSION['id_user'] = $data['id_user'];
+    $_SESSION['fullname'] = $data['fullname'];
+    $_SESSION['position'] = $data['id_position'];
+
+    if (!empty($data)) {
+        header("Location: index.php");
+    } else {
+        echo "<script>window.alert('username and password do not match, please try again');</script>";
+        echo "<script>window.location = 'login.php';</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,10 +89,10 @@
                         <form role="form" method="post" action="">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" required="required">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
